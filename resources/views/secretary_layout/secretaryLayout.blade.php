@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dr. Flores Clinic</title>
+  <title>Clinical Management Information System</title>
 
 
 
@@ -197,7 +197,7 @@
 
 
 
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-chart-pie"></i>
                 <p>
@@ -212,14 +212,9 @@
                     <p>Sales reports</p>
                   </a>
                 </li>
-                  <!-- <li class="nav-item">
-                    <a href="/ManagerTransactionHistory" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Transaction History</p>
-                    </a>
-                  </li> -->
+
               </ul>
-            </li>
+            </li> -->
 
 
 
