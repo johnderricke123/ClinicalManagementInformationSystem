@@ -15,20 +15,20 @@
 
 <!-- Content Header (Page header) -->
 <div class="content-header">
-  <div class="container-fluid">
-    <div class="row mb-2">
-      <div class="col-sm-6">
-        <h1 class="m-0">Patient profile</h1>
-      </div><!-- /.col -->
-      <div class="col-sm-6">
-        <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item"><a href="#">Monitoring</a></li>
-          <li class="breadcrumb-item active">Records</li>
-          <li class="breadcrumb-item active">View patient records</li>
-        </ol>
-      </div><!-- /.col -->
-    </div><!-- /.row -->
-  </div><!-- /.container-fluid -->
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Patient profile</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Monitoring</a></li>
+                    <li class="breadcrumb-item active">Records</li>
+                    <li class="breadcrumb-item active">View patient records</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
 </div>
 <!-- /.content-header -->
 
@@ -153,7 +153,9 @@
                                 <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Personal Informations</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Check up history</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Images</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Generate a prescription</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#generatePrescription" data-toggle="tab">Generate a prescription</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#prescriptionHistory" data-toggle="tab">Prescription history</a></li>
+
                             </ul>
                         </div><!-- /.card-header -->
                         <div class="card-body">
@@ -723,6 +725,161 @@
 
                                 </div>
                                 <!-- /.tab-pane -->
+
+
+
+
+
+
+
+
+
+                                <div class="tab-pane" id="generatePrescription">
+                                    <section class="content">
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="card card-primary">
+                                                        <div class="card-header">
+                                                            <h4 class="card-title">Generate Prescription</h4>
+                                                        </div>
+                                                        <div class="card-body">
+
+                                                            <form method="get" action="/ManagerGeneratePrescription">
+                                                                <div class="card-body">
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+
+                                                                        <input type="hidden" value="{{$patient_personal_info->id}}" name="PatientID"/>
+
+                                                                            <div class="form-group">
+                                                                                <label>Patient's Fullname</label>
+                                                                                <input type="text" class="form-control" style="width: 100%;" name="PatientName" value="{{$patient_personal_info->FirstName}} {{$patient_personal_info->LastName}}" required="true" />
+                                                                            </div>
+
+
+
+                                                                            <div class="row"><label>Sex</label></div>
+                                                                            @if($patient_personal_info->Gender == 'Male')
+                                                                            <div class="form-check form-check-inline">
+                                                                                <input class="form-check-input" type="radio" name="Gender" id="inlineRadio1" value="Male" checked>
+                                                                                <label>Male</label>
+                                                                            </div>
+
+                                                                            <div class="form-check form-check-inline">
+                                                                                <input class="form-check-input" type="radio" name="Gender" id="inlineRadio2" value="Female">
+                                                                                <label>Female</label>
+                                                                            </div>
+                                                                            @endif
+
+                                                                            @if($patient_personal_info->Gender == 'Female')
+                                                                            <div class="form-check form-check-inline">
+                                                                                <input class="form-check-input" type="radio" name="Gender" id="inlineRadio1" value="Male">
+                                                                                <label>Male</label>
+                                                                            </div>
+
+                                                                            <div class="form-check form-check-inline">
+                                                                                <input class="form-check-input" type="radio" name="Gender" id="inlineRadio2" value="Female" checked>
+                                                                                <label>Female</label>
+                                                                            </div>
+                                                                            @endif
+
+                                                                            @php
+                                                                            $dateNow = now();
+                                                                            @endphp
+                                                                            <div class="form-group">
+                                                                                <label for="datetime">Date and Time:</label>
+                                                                                <input type="datetime-local" class="form-control" id="datetime" name="DateAndTime" value="{{$dateNow}}" required="true">
+                                                                            </div>
+
+
+
+                                                                        </div>
+                                                                        <!-- /.col -->
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label>Age</label>
+                                                                                <input type="number" class="form-control" style="width: 100%;" value="{{$patient_personal_info->Age}}" name="Age" required="true" />
+                                                                            </div>
+
+
+
+                                                                            <div class="form-group">
+                                                                                <label>Address</label>
+                                                                                <input type="text" class="form-control" style="width: 100%;" name="Address" value="{{$patient_personal_info->Address}}" required="true" />
+                                                                            </div>
+
+                                                                            <div class="form-group">
+                                                                                <label>Next check up</label>
+                                                                                <input type="date" class="form-control" style="width: 100%;" name="NextCheckUp" />
+                                                                            </div>
+
+
+                                                                            <!-- /.form-group -->
+                                                                        </div>
+                                                                        <!-- /.col -->
+                                                                    </div>
+                                                                    <!-- /.row -->
+
+                                                                    <textarea class="form-control" placeholder="Type your prescription" style="height: 500px;" name="Prescription" required="true"></textarea>
+
+
+
+                                                                    <div class="float-right" style="padding: 20px;">
+                                                                        <button type="submit" class="btn btn-primary btn-md" ><i class="fas fa-print"></i> Print</button>
+                                                                    </div>
+
+                                                                    <!-- <div class="float-right" style="padding: 20px;">
+                                        <button type="submit" class="btn btn-primary btn-md"><i class="fas fa-print"></i> Print</button>
+                                    </div> -->
+
+                                                                    <!-- <div class="float-right" style="padding: 20px;">
+                                            <button type="button" class="btn btn-primary btn-md" onclick="generatePrintableContent()"><i class="fas fa-print"></i> Print</button>
+                                        </div> -->
+
+
+                                                                    <!-- /.row -->
+                                                                </div>
+                                                                <!-- /.card-body -->
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                                <!-- /.tab-pane -->
+
+
+
+
+
+
+                                <div class="tab-pane" id="prescriptionHistory">
+                                    <section class="content">
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="card card-primary">
+                                                        <div class="card-header">
+                                                            <h4 class="card-title">Prescription history</h4>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <h1>Prescription history</h1>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                                <!-- /.tab-pane -->
+
+
+
+
+
                             </div>
                             <!-- /.tab-content -->
                         </div><!-- /.card-body -->
@@ -1224,27 +1381,9 @@
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<!-- <script src="../../dist/js/demo.js"></script>
- -->
+<!-- <script src="../../dist/js/demo.js"></script> -->
 
 
-
-
-
-
-
-
-
-
-
-<!-- <script>
-        function openPopup() {
-            const popupUrl = "{{ route('open-popup') }}";
-
-
-            const popupWindow = window.open(popupUrl, "_blank", "width=600,height=400");
-        }
-    </script> -->
 
 <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
 

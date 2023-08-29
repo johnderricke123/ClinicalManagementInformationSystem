@@ -26,7 +26,7 @@
 
           <div style="text-align: center;">
             <div class="row" style="padding-top: 10px;">
-              <h4 style="line-height: 1;"><b>ROSARIO V. FLORES, M.D.</b></h4>
+              <h4 style="line-height: 1;"><b>ROSARIO V. FLORES, M.D. {{$request->PatientID}}</b></h4>
               <span style="line-height: 1;"><b>Diplomate, Phil. Board of Obstetrics & Gynecology</b></span>
               <span style="line-height: 1;"><b>Fellow Philippine Obstetrics & Gynecology Society</b></span>
             </div>

@@ -30,7 +30,7 @@ Route::get('/', function () {
 
 
 
-Route::get('/popup',[ManagerController::class,'popup'])->name('open-popup');
+Route::get('/ManagerGeneratePrescription',[ManagerController::class,'popup'])->name('managerGeneratePrescription');
 
 
 // Manager Routes

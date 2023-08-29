@@ -7,6 +7,7 @@ use App\Models\PatientCheckUpDetails;
 use App\Models\PatientFile;
 use App\Models\PatientPersonalInfo;
 use App\Models\PatientProfile;
+use App\Models\PrescriptionHistory;
 use App\Models\ScheduledList;
 use App\Models\User;
 use App\Models\WaitingList;
@@ -532,10 +533,24 @@ class ManagerController extends Controller
     }
 
 
-    public function popup()
+    public function popup(Request $request)
     {
+        // return $request;
+
+        $database = new PrescriptionHistory();
+        $database->patient_personal_info_id = $request->PatientID;
+        $database->PatientName = $request->PatientName;
+        $database->Gender = $request->Gender;
+        $database->Prescription = $request->Prescription;
+        $database->DateAndTime = $request->DateAndTime;
+        $database->Age = $request->Age;
+        $database->Address = $request->Address;
+        $database->NextCheckUp = $request->NextCheckUp;
+        $save = $database->save();
+
+
         $pop = "qwerty";
-        return view('managerPages.printables.ManagerPrescriptionPrint', compact('pop'));
+        return view('managerPages.printables.ManagerPrescriptionPrint', compact('pop', 'request'));
     }
 
     public function manager_delete_image(Request $request)
