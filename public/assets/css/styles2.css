@@ -1,0 +1,13 @@
+/* Regular styles for screen */
+/* ... Your existing styles ... */
+
+.row-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    /* Adjust column widths as needed */
+  }
+  
+  .row-container > div {
+    padding: 5px;
+  }
+  

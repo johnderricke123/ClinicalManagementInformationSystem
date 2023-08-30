@@ -1,0 +1,10 @@
+/* Print-specific styles */
+.row-container {
+    grid-template-columns: 3fr 1fr 1fr; /* Adjust for print layout */
+  }
+  
+  .row-container > div {
+    padding: 5px;
+    font-size: 12pt; /* Adjust font size for print */
+  }
+  
