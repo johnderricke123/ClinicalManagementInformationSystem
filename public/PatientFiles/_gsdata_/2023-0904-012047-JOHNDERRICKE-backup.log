@@ -1,0 +1,16 @@
+2023-09-04 01:20:48: -- Analysis Started by On File Change First Full Analyze Upon Folder Connect
+2023-09-04 01:20:48: Changes: 5, Conflicts: 0, CopyTime: 0, FixState: 0, Errors: 0, All: 23
+2023-09-04 01:20:48: Left to Right: Copy File: 4 Delete File: 1 
+2023-09-04 01:20:48: == Sync Started by On File Change First Full Analyze Upon Folder Connect
+2023-09-04 01:20:48: ConnectCloned connected to file:///C:/xampp/htdocs/ClinicalInformationManagementSystem/public/PatientFiles
+2023-09-04 01:20:48: ConnectCloned connected to file:///C:/xampp/htdocs/ClinicalInformationManagementSystem/public/PatientFiles
+2023-09-04 01:20:48: ConnectCloned connected to file:///C:/xampp/htdocs/ClinicalInformationManagementSystem/public/PatientFiles
+2023-09-04 01:20:48: ConnectCloned connected to file:///~John Derricke/Desktop/BackupPatientFiles
+2023-09-04 01:20:48: ConnectCloned connected to file:///~John Derricke/Desktop/BackupPatientFiles
+2023-09-04 01:20:48: Delete File C:/Users/John Derricke/Desktop/BackupPatientFiles/2023188514fOhpKfXgST.jpg
+2023-09-04 01:20:48: ConnectCloned connected to file:///~John Derricke/Desktop/BackupPatientFiles
+2023-09-04 01:20:48: Copy New 'C:/xampp/htdocs/ClinicalInformationManagementSystem/public/PatientFiles/20231885145uDFRZjWPR.jpg' -> 'C:/Users/John Derricke/Desktop/BackupPatientFiles/20231885145uDFRZjWPR.jpg' (18,128)
+2023-09-04 01:20:48: Copy New 'C:/xampp/htdocs/ClinicalInformationManagementSystem/public/PatientFiles/2023188514iGeY3O5oYg.jpg' -> 'C:/Users/John Derricke/Desktop/BackupPatientFiles/2023188514iGeY3O5oYg.jpg' (7,762)
+2023-09-04 01:20:48: Copy New 'C:/xampp/htdocs/ClinicalInformationManagementSystem/public/PatientFiles/2023188514BdgJxQz48P.jpg' -> 'C:/Users/John Derricke/Desktop/BackupPatientFiles/2023188514BdgJxQz48P.jpg' (7,183)
+2023-09-04 01:20:48: Copy New 'C:/xampp/htdocs/ClinicalInformationManagementSystem/public/PatientFiles/2023188514pCbFFpLoKJ.png' -> 'C:/Users/John Derricke/Desktop/BackupPatientFiles/2023188514pCbFFpLoKJ.png' (112,189)
+2023-09-04 01:20:48: == Sync Complete. Time: 00:00:00, Speed: 0.00/s, OK: 5, Errors: 0

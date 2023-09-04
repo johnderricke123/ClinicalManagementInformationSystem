@@ -271,6 +271,12 @@
                     <p>Scheduled list</p>
                   </a>
                 </li>
+                <li class="nav-item">
+                  <a href="/ManagerScheduledList" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Scheduled check up</p>
+                  </a>
+                </li>
 
               </ul>
             </li>

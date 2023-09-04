@@ -1,0 +1,15 @@
+2023-09-04 01:22:12: -- Analysis Started by On File Change, After Delay
+2023-09-04 01:22:12: Changes: 4, Conflicts: 0, CopyTime: 0, FixState: 0, Errors: 0, All: 23
+2023-09-04 01:22:12: Left to Right: Delete File: 4 
+2023-09-04 01:22:12: == Sync Started by On File Change, After Delay
+2023-09-04 01:22:12: ConnectCloned connected to file:///C:/xampp/htdocs/ClinicalInformationManagementSystem/public/PatientFiles
+2023-09-04 01:22:12: ConnectCloned connected to file:///C:/xampp/htdocs/ClinicalInformationManagementSystem/public/PatientFiles
+2023-09-04 01:22:12: ConnectCloned connected to file:///C:/xampp/htdocs/ClinicalInformationManagementSystem/public/PatientFiles
+2023-09-04 01:22:12: ConnectCloned connected to file:///~John Derricke/Desktop/BackupPatientFiles
+2023-09-04 01:22:12: ConnectCloned connected to file:///~John Derricke/Desktop/BackupPatientFiles
+2023-09-04 01:22:12: ConnectCloned connected to file:///~John Derricke/Desktop/BackupPatientFiles
+2023-09-04 01:22:12: Delete File C:/Users/John Derricke/Desktop/BackupPatientFiles/20231885145uDFRZjWPR.jpg
+2023-09-04 01:22:12: Delete File C:/Users/John Derricke/Desktop/BackupPatientFiles/202318851498HD47if31.jpg
+2023-09-04 01:22:12: Delete File C:/Users/John Derricke/Desktop/BackupPatientFiles/2023188514BdgJxQz48P.jpg
+2023-09-04 01:22:12: Delete File C:/Users/John Derricke/Desktop/BackupPatientFiles/2023188514pCbFFpLoKJ.png
+2023-09-04 01:22:12: == Sync Complete. Time: 00:00:01, Speed: 0.00/s, OK: 4, Errors: 0

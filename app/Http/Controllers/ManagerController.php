@@ -464,13 +464,16 @@ class ManagerController extends Controller
         $patient_check_up_details = PatientCheckUpDetails::where('id', '=', $id)->first();
         $patient_files = PatientFile::where('patient_personal_info_id', '=', $id)->get();
         $patient_profiles = PatientProfile::where('patient_personal_info_id', '=', $id)->get();
+        $patient_prescription_histories = PrescriptionHistory::where('patient_personal_info_id', '=', $id)->get();
+
+        // return $patient_prescription_histories;
         // if(!$patient_profiles){
 
         //     $patient_profiles->Path = "null"; 
 
         // }
         // return $patient_profiles;
-        return view('managerPages.ManagerViewCheckUpDetails', compact('patient_personal_info', 'patient_check_up_details', 'patient_files', 'patient_profiles'));
+        return view('managerPages.ManagerViewCheckUpDetails', compact('patient_personal_info', 'patient_check_up_details', 'patient_files', 'patient_profiles','patient_prescription_histories'));
     }
 
     public function manager_initial_view_check_up_details(Request $request, $id)

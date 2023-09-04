@@ -1,0 +1,12 @@
+2023-09-04 01:23:54: -- Analysis Started by On File Change, After Delay
+2023-09-04 01:23:54: Changes: 2, Conflicts: 0, CopyTime: 0, FixState: 0, Errors: 0, All: 23
+2023-09-04 01:23:54: Left to Right: Delete File: 2 
+2023-09-04 01:23:54: == Sync Started by On File Change, After Delay
+2023-09-04 01:23:54: Start only 2 threads, limited by tasks to run
+2023-09-04 01:23:54: ConnectCloned connected to file:///C:/xampp/htdocs/ClinicalInformationManagementSystem/public/PatientFiles
+2023-09-04 01:23:54: ConnectCloned connected to file:///C:/xampp/htdocs/ClinicalInformationManagementSystem/public/PatientFiles
+2023-09-04 01:23:54: ConnectCloned connected to file:///~John Derricke/Desktop/BackupPatientFiles
+2023-09-04 01:23:54: ConnectCloned connected to file:///~John Derricke/Desktop/BackupPatientFiles
+2023-09-04 01:23:54: Delete File C:/Users/John Derricke/Desktop/BackupPatientFiles/2023316695mzGeMtSv4i.png
+2023-09-04 01:23:54: Delete File C:/Users/John Derricke/Desktop/BackupPatientFiles/2023316695SkpG9dNx4U.jpg
+2023-09-04 01:23:54: == Sync Complete. Time: 00:00:01, Speed: 0.00/s, OK: 2, Errors: 0
