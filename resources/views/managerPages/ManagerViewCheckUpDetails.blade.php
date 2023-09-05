@@ -432,12 +432,191 @@
                                         <div>
                                             <i class="fas fa-envelope bg-primary"></i>
                                             <div class="timeline-item">
-                                                <span class="time"><i class="far fa-clock"></i> 12:05</span>
+                                                <div class="float-right" style="padding-bottom: 10px; padding-top: 5px;"> <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#AddPatientDiagnosisModal"> <i class="fas fa-plus"></i> Add a diagnosis</button></div>
+
 
                                                 <h3 class="timeline-header"><a href="#">Diagnosis</a></h3>
 
                                                 <div class="timeline-body">
                                                     {!! nl2br(e($patient_check_up_details->Diagnosis)) !!}
+
+
+                                                    <!-- diagnosis table -->
+
+                                                    @php
+                                                    use Carbon\Carbon;
+                                                    use Illuminate\Support\Str;
+                                                    @endphp
+
+
+
+                                                    <section class="content">
+                                                        <div class="container-fluid">
+                                                            <div class="row">
+                                                                <div class="col-12">
+                                                                    <div class="card card-primary">
+                                                                        <div class="card-header">
+                                                                            <h4 class="card-title">Diagnosis history</h4>
+                                                                        </div>
+                                                                        <div class="card-body">
+                                                                            <h1>Diagnosis history</h1>
+                                                                            <!-- prescription history content -->
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                            <table border="0" cellspacing="5" cellpadding="5">
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td>Minimum date:</td>
+                                                                                        <td><input type="text" id="min" name="min"></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td>Maximum date:</td>
+                                                                                        <td><input type="text" id="max" name="max"></td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                            <table id="example2" class="display nowrap" style="width:100%">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <!-- <th>Patient Name</th> -->
+                                                                                        <th>Diagnosis</th>
+                                                                                        <!-- <th>Prescription</th> -->
+                                                                                        <th>Generated at</th>
+                                                                                        <th>Action</th>
+                                                                                        <!-- <th>Age</th>
+                                                                                        <th>Address</th>
+                                                                                        <th>Next check up</th> -->
+                                                                                        <!-- <th>Generated at</th> -->
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+
+                                                                                    @foreach($patient_diagnosis_history as $pdh)
+                                                                                    <tr>
+                                                                                        <td>{{Str::words($pdh->Diagnosis, 6, ' ...')}}</td>
+                                                                                        <td>
+                                                                                            <div class="d-flex justify-content-center">
+                                                                                                <div class="badge badge-warning badge-sm">{{ Carbon::parse($pdh->DateGenerated)->format('Y/m/d') }}</div>
+                                                                                            </div>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <button class="btn btn-primary btn-md" data-toggle="modal" data-target="#ViewPatientDiagnosisModal{{$pdh->id}}">View</button>
+
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    @endforeach
+
+                                                                                </tbody>
+                                                                                <tfoot>
+                                                                                    <tr>
+                                                                                        <th>Diagnosis</th>
+                                                                                        <th>Generated at</th>
+                                                                                        <th>Action</th>
+                                                                                        <!-- <th>Prescription</th>
+                                                                                        <th>Generated at</th>
+                                                                                        <th>Age</th>
+                                                                                        <th>Address</th>
+                                                                                        <th>Next check up</th> -->
+                                                                                        <!-- <th>Generated at</th> -->
+                                                                                    </tr>
+                                                                                </tfoot>
+                                                                            </table>
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                            <!-- prescription history content -->
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </section>
+                                                    <!-- /.tab-pane -->
+
+
+
+
+
+                                                    <!-- diagnosis table -->
+
+
+
+
+                                                    <script>
+                                                        var minDate, maxDate;
+
+                                                        // Custom filtering function which will search data in column four between two values
+                                                        DataTable.ext.search.push(function(settings, data, dataIndex) {
+                                                            var min = minDate.val();
+                                                            var max = maxDate.val();
+                                                            var date = new Date(data[3]);
+
+                                                            if (
+                                                                (min === null && max === null) ||
+                                                                (min === null && date <= max) ||
+                                                                (min <= date && max === null) ||
+                                                                (min <= date && date <= max)
+                                                            ) {
+                                                                return true;
+                                                            }
+                                                            return false;
+                                                        });
+
+                                                        // Create date inputs
+                                                        minDate = new DateTime('#min', {
+                                                            format: 'MMMM Do YYYY'
+                                                        });
+                                                        maxDate = new DateTime('#max', {
+                                                            format: 'MMMM Do YYYY'
+                                                        });
+
+                                                        // DataTables initialisation
+
+                                                        var table = $('#example2').DataTable();
+
+                                                        // Refilter the table
+                                                        $('#min, #max').on('change', function() {
+                                                            table.draw();
+                                                        });
+                                                    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                                 </div>
                                             </div>
                                         </div>
@@ -450,6 +629,7 @@
                                                 <h3 class="timeline-header"><a href="#">Laboratory Findings</a></h3>
                                                 <div class="timeline-body">
                                                     {!! nl2br(e($patient_check_up_details->LabFindings)) !!}
+
                                                 </div>
                                             </div>
                                         </div>
@@ -878,12 +1058,6 @@
 
 
 
-                                                            @php
-                                                            use Carbon\Carbon;
-                                                            use Illuminate\Support\Str; 
-                                                            @endphp
-
-
 
 
                                                             <table border="0" cellspacing="5" cellpadding="5">
@@ -912,14 +1086,7 @@
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
-                                                                    <!-- <tr>
-                <td>Tiger Nixon</td>
-                <td>System Architect</td>
-                <td>Edinburgh</td>
-                <td>61</td>
-                <td>2011-04-25</td>
-                <td>$320,800</td>
-            </tr> -->
+
                                                                     @foreach($patient_prescription_histories as $pph)
                                                                     <tr>
                                                                         <td>{{$pph->PatientName}}</td>
@@ -1009,6 +1176,59 @@
 
 
 <!-- _________________________Modals_________________________ -->
+
+
+
+<div class="modal fade" id="AddPatientDiagnosisModal" tabindex="-1" role="dialog" aria-labelledby="AddPatientDiagnosisModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="AddPatientDiagnosisModalLabel">Upload Patient Image</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h4>Add diagnosis modal</h4>
+                <form method="post" action="{{route ('managerAddPatientDiagnosis')}}">
+                    @csrf
+                    <span><b>Diagnosis</b></span>
+                    <textarea class="form-control" name="Diagnosis" placeholder="Type your diagnosis"></textarea>
+                    <input type="hidden" value="{{$patient_personal_info->id}}" name="PatientID"/>
+                    
+                    <div class="row">
+                        <div class="col"></div>
+                        <div class="float-right" style="padding: 10px;"><button class="btn btn-primary btn-md" type="submit">Submit</button></div>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@foreach($patient_diagnosis_history as $pdhMod)
+<div class="modal fade" id="ViewPatientDiagnosisModal{{$pdhMod->id}}" tabindex="-1" role="dialog" aria-labelledby="ViewPatientDiagnosisModalLabel{{$pdhMod->id}}" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ViewPatientDiagnosisModalLabel{{$pdhMod->id}}">Patient's diagnosis</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- <h1>View diagnosis modal {{$pdhMod->id}}</h1> -->
+                <span><b>{{$pdhMod->DateGenerated}}</b></span>
+                <span>{!! nl2br(e($pdhMod->Diagnosis)) !!}</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+@endforeach
+
 
 
 
@@ -1397,6 +1617,17 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 <!-- Scheduled Form Modal -->
 <!-- <div class="modal fade" id="UploadPatientImageModal" tabindex="-1" role="dialog" aria-labelledby="UploadPatientImageModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -1544,11 +1775,11 @@
 
 
 
-    <script src="../plugins/jquery/jquery.min.js"></script>
-    <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../plugins/ekko-lightbox/ekko-lightbox.min.js"></script>
-    <script src="../dist/js/adminlte.min.js"></script>
-    <script src="../plugins/filterizr/jquery.filterizr.min.js"></script>
+<script src="../plugins/jquery/jquery.min.js"></script>
+<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../plugins/ekko-lightbox/ekko-lightbox.min.js"></script>
+<script src="../dist/js/adminlte.min.js"></script>
+<script src="../plugins/filterizr/jquery.filterizr.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../dist/js/demo.js"></script>
 <!-- Page specific script -->
@@ -1581,6 +1812,7 @@
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
 <script src="https://cdn.datatables.net/datetime/1.5.1/js/dataTables.dateTime.min.js"></script>
+
 <script>
     var minDate, maxDate;
 
@@ -1617,4 +1849,6 @@
         table.draw();
     });
 </script>
+
+
 @endsection

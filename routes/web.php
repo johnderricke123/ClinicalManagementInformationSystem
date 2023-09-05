@@ -92,6 +92,9 @@ Route::get('/ManagerGeneratePrescription',[ManagerController::class,'popup'])->n
 
     Route::delete('/ManagerDeleteScheduledRecord', [ManagerController::class,'manager_delete_scheduled_record'])->name('managerDeleteScheduledRecord');
 
+    Route::post('/ManagerAddPatientDiagnosis', [ManagerController::class,'manager_add_patient_diagnosis'])->name('managerAddPatientDiagnosis');
+
+
     
     
 

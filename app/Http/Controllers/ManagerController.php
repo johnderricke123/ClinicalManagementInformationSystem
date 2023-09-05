@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CompanyAccount;
 use App\Models\PatientCheckUpDetails;
+use App\Models\PatientDiagnosis;
 use App\Models\PatientFile;
 use App\Models\PatientPersonalInfo;
 use App\Models\PatientProfile;
@@ -376,11 +377,12 @@ class ManagerController extends Controller
 
 
 
+
         $check_up_details_db = new PatientCheckUpDetails();
         $check_up_details_db->id = $uniqueNumber;
         $check_up_details_db->PatientName = $request->PatientName . " " . $request->PatientLastName;
         $check_up_details_db->DoctorName = $request->DoctorName;
-        $check_up_details_db->Diagnosis = $request->Diagnosis;
+        // $check_up_details_db->Diagnosis = $request->Diagnosis;
         $check_up_details_db->LabFindings = $request->LaboratoryFindings;
         $check_up_details_db->DateAndTimeOfCheckUp = $request->DateAndTimeOfCheckUp;
         $check_up_details_db->Added_at = Carbon::now()->format('Y-m-d H:i:s');
@@ -388,7 +390,14 @@ class ManagerController extends Controller
 
 
 
-
+        if($request->Diagnosis){
+            $patient_diagnosis_database = new PatientDiagnosis();
+            $patient_diagnosis_database->patient_check_up_details_id = $uniqueNumber;
+            $patient_diagnosis_database->PatientName = $request->PatientName." ".$request->PatientLastName;
+            $patient_diagnosis_database->Diagnosis = $request->Diagnosis;
+            $patient_diagnosis_database->DateGenerated = now();
+            $save= $patient_diagnosis_database->save();
+        }
 
 
         // return $uniqueNumber.$randomText;
@@ -465,7 +474,7 @@ class ManagerController extends Controller
         $patient_files = PatientFile::where('patient_personal_info_id', '=', $id)->get();
         $patient_profiles = PatientProfile::where('patient_personal_info_id', '=', $id)->get();
         $patient_prescription_histories = PrescriptionHistory::where('patient_personal_info_id', '=', $id)->get();
-
+        $patient_diagnosis_history = PatientDiagnosis::where('patient_check_up_details_id', '=', $id)->get();
         // return $patient_prescription_histories;
         // if(!$patient_profiles){
 
@@ -473,7 +482,7 @@ class ManagerController extends Controller
 
         // }
         // return $patient_profiles;
-        return view('managerPages.ManagerViewCheckUpDetails', compact('patient_personal_info', 'patient_check_up_details', 'patient_files', 'patient_profiles','patient_prescription_histories'));
+        return view('managerPages.ManagerViewCheckUpDetails', compact('patient_personal_info', 'patient_check_up_details', 'patient_files', 'patient_profiles','patient_prescription_histories','patient_diagnosis_history'));
     }
 
     public function manager_initial_view_check_up_details(Request $request, $id)
@@ -862,5 +871,11 @@ class ManagerController extends Controller
 
         Alert::success('Success', 'Successfully Deleted!')->persistent(true, false);
         return redirect()->back();
+    }
+
+    public function manager_add_patient_diagnosis(Request $request){
+        
+        return $request;
+
     }
 }
