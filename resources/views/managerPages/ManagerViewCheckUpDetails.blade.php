@@ -80,6 +80,16 @@
 
                             <h3 class="profile-username text-center">{{$patient_personal_info->FirstName}} {{$patient_personal_info->LastName}}</h3>
 
+                            <div class="d-flex justify-content-center">
+                                <div class="row">
+                                    <div style="padding: 3px;">
+                                        <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#UploadPatientProfileModal"><i class="fas fa-file-upload"></i></button>
+                                    </div>
+                                    <div style="padding: 3px;">
+                                        <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                    </div>
+                                </div>
+                            </div>
                             <p class="text-muted text-center">{{$patient_personal_info->Occupation}}</p>
 
                             <!-- <ul class="list-group list-group-unbordered mb-3">
@@ -122,25 +132,39 @@
 
                             <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
 
-                            <p class="text-muted">Malibu, California</p>
+                            <p class="text-muted">{{$patient_personal_info->Address}}</p>
 
                             <hr>
 
-                            <strong><i class="fas fa-pencil-alt mr-1"></i> Skills</strong>
+                            <strong><i class="fas fa-birthday-cake mr-1"></i> Age</strong>
 
                             <p class="text-muted">
-                                <span class="tag tag-danger">UI Design</span>
-                                <span class="tag tag-success">Coding</span>
-                                <span class="tag tag-info">Javascript</span>
-                                <span class="tag tag-warning">PHP</span>
-                                <span class="tag tag-primary">Node.js</span>
+                                <span class="tag tag-danger">{{$patient_personal_info->Age}}</span>
                             </p>
 
                             <hr>
 
-                            <strong><i class="far fa-file-alt mr-1"></i> Notes</strong>
+                            <strong><i class="fas fa-venus-mars mr-1"></i> Gender</strong>
 
-                            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+                            <p class="text-muted">{{$patient_personal_info->Gender}}</p>
+
+                            <hr>
+
+                            <strong><i class="fas fa-address-book mr-1"></i> Contact</strong>
+
+                            <p class="text-muted">
+                                <span class="tag tag-danger">{{$patient_personal_info->Contact}}</span>
+                            </p>
+
+                            <hr>
+
+                            <strong><i class="fas fa-briefcase mr-1"></i> Occupation</strong>
+
+                            <p class="text-muted">
+                                <span class="tag tag-danger">{{$patient_personal_info->Occupation}}</span>
+                            </p>
+
+
                         </div>
                         <!-- /.card-body -->
                     </div>
@@ -151,7 +175,7 @@
                     <div class="card">
                         <div class="card-header p-2">
                             <ul class="nav nav-pills">
-                                <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Personal Informations</a></li>
+                                <!-- <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Personal Informations</a></li> -->
                                 <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Check up history</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Images</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#generatePrescription" data-toggle="tab">Generate a prescription</a></li>
@@ -163,245 +187,14 @@
                             <div class="tab-content">
 
                                 <!-- personal informations tab -->
-                                <div class="active tab-pane" id="activity">
-                                    <!-- Post -->
-                                    <div class="post">
 
 
 
 
 
 
-                                        <div class="timeline timeline-inverse">
-                                            <!-- timeline time label -->
-                                            <!-- <div class="time-label">
-                                                        <span class="bg-danger">
-                                                            10 Feb. 2014
-                                                        </span>
-                                                    </div> -->
-                                            <!-- /.timeline-label -->
-                                            <!-- timeline item -->
-                                            <div>
-                                                <i class="fas fa-map-marker-alt"></i>
-                                                <!-- <h3 class="badge badge-primary">Address</h3> -->
-                                                <!-- <h4><i class="badge badge-secondary bg-primary">A</i></h4> -->
 
-                                                <div class="timeline-item">
-
-                                                    <div class="row" style="padding: 10px;">
-                                                        <div class="col-sm">
-                                                            <span class="timeline-header"><a href="#"><b>Address</b></a> </span>
-                                                        </div>
-                                                        <div class="col-sm">
-                                                            <span class="timeline-header"><b>{{$patient_personal_info->Address}}</b></span>
-                                                        </div>
-                                                        <!-- <div class="col-sm">
-                                                                <span class="time"><i class="far fa-clock"></i> 12:05</span>
-                                                            </div> -->
-                                                    </div>
-
-
-                                                </div>
-                                            </div>
-                                            <!-- END timeline item -->
-                                            <!-- timeline item -->
-
-                                            <div>
-                                                <i class="fas fa-user bg-info"></i>
-
-                                                <div class="timeline-item">
-                                                    <div class="row" style="padding: 10px;">
-                                                        <div class="col-sm">
-                                                            <span class="timeline-header"><a href="#"><b>Fullname</b></a> </span>
-                                                        </div>
-                                                        <div class="col-sm">
-                                                            <span class="timeline-header"><b>{{$patient_personal_info->FirstName}} {{$patient_personal_info->LastName}}</b></span>
-                                                        </div>
-                                                        <!-- <div class="col-sm">
-                                                                    <span class="time"><i class="far fa-clock"></i> 12:05</span>
-                                                                </div> -->
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- END timeline item -->
-
-
-                                            <!-- timeline item -->
-                                            <div>
-                                                <i class="fas fa-birthday-cake bg-warning"></i>
-
-                                                <div class="timeline-item">
-                                                    <div class="row" style="padding: 10px;">
-                                                        <div class="col-sm">
-                                                            <span class="timeline-header"><a href="#"><b>Age</b></a> </span>
-                                                        </div>
-                                                        <div class="col-sm">
-                                                            <span class="timeline-header"><b>{{$patient_personal_info->Age}}</b></span>
-                                                        </div>
-                                                        <!-- <div class="col-sm">
-                                                                        <span class="time"><i class="far fa-clock"></i> 12:05</span>
-                                                                    </div> -->
-                                                    </div>
-
-                                                </div>
-                                            </div>
-
-
-
-                                            <div>
-                                                <i class="fas fa-venus-mars bg-secondary"></i>
-
-                                                <div class="timeline-item">
-                                                    <div class="row" style="padding: 10px;">
-                                                        <div class="col-sm">
-                                                            <span class="timeline-header"><a href="#"><b>Gender</b></a> </span>
-                                                        </div>
-                                                        <div class="col-sm">
-                                                            <span class="timeline-header"><b>{{$patient_personal_info->Gender}}</b></span>
-                                                        </div>
-                                                        <!-- <div class="col-sm">
-                                                                        <span class="time"><i class="far fa-clock"></i> 12:05</span>
-                                                                    </div> -->
-                                                    </div>
-
-                                                </div>
-                                            </div>
-
-
-
-
-                                            <div>
-                                                <i class="fas fa-address-book bg-info"></i>
-
-                                                <div class="timeline-item">
-                                                    <div class="row" style="padding: 10px;">
-                                                        <div class="col-sm">
-                                                            <span class="timeline-header"><a href="#"><b>Contact</b></a> </span>
-                                                        </div>
-                                                        <div class="col-sm">
-                                                            <span class="timeline-header"><b>{{$patient_personal_info->Contact}}</b></span>
-                                                        </div>
-                                                        <!-- <div class="col-sm">
-                                                                        <span class="time"><i class="far fa-clock"></i> 12:05</span>
-                                                                    </div> -->
-                                                    </div>
-
-                                                </div>
-                                            </div>
-
-
-
-
-
-                                            <div>
-                                                <i class="fas fa-briefcase bg-secondary"></i>
-
-                                                <div class="timeline-item">
-                                                    <div class="row" style="padding: 10px;">
-                                                        <div class="col-sm">
-                                                            <span class="timeline-header"><a href="#"><b>Occupation</b></a> </span>
-                                                        </div>
-                                                        <div class="col-sm">
-                                                            <span class="timeline-header"><b>{{$patient_personal_info->Occupation}}</b></span>
-                                                        </div>
-                                                        <!-- <div class="col-sm">
-                                                                        <span class="time"><i class="far fa-clock"></i> 12:05</span>
-                                                                    </div> -->
-                                                    </div>
-
-                                                </div>
-                                            </div>
-
-
-
-                                            <!-- 
-                                            <div>
-                                                <i class="far fa-clock bg-gray"></i>
-                                            </div> -->
-                                        </div>
-
-
-
-                                        <!-- <div class="row">
-                            <div class="col-md-6">
-                                <label>Address</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>{{$patient_personal_info->Address}}</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Name</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>{{$patient_personal_info->FirstName}}</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Surname</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>{{$patient_personal_info->LastName}}</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Age</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>{{$patient_personal_info->Age}}</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Gender</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>{{$patient_personal_info->Gender}}</p>
-                            </div>
-                        </div>
-
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Phone</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>{{$patient_personal_info->Contact}}</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Occupation</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>{{$patient_personal_info->Occupation}}</p>
-                            </div>
-                        </div> -->
-
-
-
-
-                                    </div>
-                                    <!-- /.post -->
-
-                                    <!-- /.post -->
-
-                                    <!-- /.post -->
-                                </div>
-                                <!-- /.tab-pane -->
-
-
-                                <!-- personal informations tab -->
-
-
-
-
-
-
-                                <div class="tab-pane" id="timeline">
+                                <div class="active tab-pane" id="timeline">
                                     <!-- The timeline -->
                                     <div class="timeline timeline-inverse">
                                         <!-- timeline time label -->
@@ -430,15 +223,13 @@
 
                                         <!-- timeline item -->
                                         <div>
-                                            <i class="fas fa-envelope bg-primary"></i>
+                                            <i class="fas fa-diagnoses"></i>
                                             <div class="timeline-item">
-                                                <div class="float-right" style="padding-bottom: 10px; padding-top: 5px;"> <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#AddPatientDiagnosisModal"> <i class="fas fa-plus"></i> Add a diagnosis</button></div>
 
 
-                                                <h3 class="timeline-header"><a href="#">Diagnosis</a></h3>
+                                                <h3 class="timeline-header"><a href="#">Diagnosis <div class="float-right"> <button class="btn btn-sm text-blue" data-toggle="modal" data-target="#AddPatientDiagnosisModal"> <i class="fas fa-plus"></i> <b>Add a diagnosis</b></button></div> </a></h3>
 
                                                 <div class="timeline-body">
-                                                    {!! nl2br(e($patient_check_up_details->Diagnosis)) !!}
 
 
                                                     <!-- diagnosis table -->
@@ -455,11 +246,11 @@
                                                             <div class="row">
                                                                 <div class="col-12">
                                                                     <div class="card card-primary">
-                                                                        <div class="card-header">
+                                                                        <!-- <div class="card-header">
                                                                             <h4 class="card-title">Diagnosis history</h4>
-                                                                        </div>
+                                                                        </div> -->
                                                                         <div class="card-body">
-                                                                            <h1>Diagnosis history</h1>
+                                                                            <!-- <h1>Diagnosis history</h1> -->
                                                                             <!-- prescription history content -->
 
 
@@ -475,14 +266,15 @@
 
                                                                             <table border="0" cellspacing="5" cellpadding="5">
                                                                                 <tbody>
-                                                                                    <tr>
-                                                                                        <td>Minimum date:</td>
-                                                                                        <td><input type="text" id="min" name="min"></td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                        <td>Maximum date:</td>
-                                                                                        <td><input type="text" id="max" name="max"></td>
-                                                                                    </tr>
+                                                                                    <div class="row">
+                                                                                        <tr>
+                                                                                            <td>Minimum date:</td>
+                                                                                            <td><input type="text" id="min" name="min"></td>
+
+                                                                                            <td>Maximum date:</td>
+                                                                                            <td><input type="text" id="max" name="max"></td>
+                                                                                        </tr>
+                                                                                    </div>
                                                                                 </tbody>
                                                                             </table>
                                                                             <table id="example2" class="display nowrap" style="width:100%">
@@ -511,6 +303,7 @@
                                                                                         </td>
                                                                                         <td>
                                                                                             <button class="btn btn-primary btn-md" data-toggle="modal" data-target="#ViewPatientDiagnosisModal{{$pdh->id}}">View</button>
+                                                                                            <button class="btn btn-danger btn-md" data-toggle="modal" data-target="#ViewPatientDiagnosisModal{{$pdh->id}}">Delete</button>
 
                                                                                         </td>
                                                                                     </tr>
@@ -568,7 +361,7 @@
                                                         DataTable.ext.search.push(function(settings, data, dataIndex) {
                                                             var min = minDate.val();
                                                             var max = maxDate.val();
-                                                            var date = new Date(data[3]);
+                                                            var date = new Date(data[2]);
 
                                                             if (
                                                                 (min === null && max === null) ||
@@ -624,11 +417,110 @@
 
                                         <!-- timeline item -->
                                         <div>
-                                            <i class="fas fa-comments bg-warning"></i>
+                                            <i class="fa-solid fa-flask-gear"></i>
                                             <div class="timeline-item">
                                                 <h3 class="timeline-header"><a href="#">Laboratory Findings</a></h3>
                                                 <div class="timeline-body">
                                                     {!! nl2br(e($patient_check_up_details->LabFindings)) !!}
+
+
+
+
+                                                    <!-- laboratory findings table -->
+                                                    <section class="content">
+                                                        <div class="container-fluid">
+                                                            <div class="row">
+                                                                <div class="col-12">
+                                                                    <div class="card card-primary">
+                                                                        <!-- <div class="card-header">
+                                                                            <h4 class="card-title">Diagnosis history</h4>
+                                                                        </div> -->
+                                                                        <div class="card-body">
+                                                                            <!-- <h1>Diagnosis history</h1> -->
+                                                                            <!-- prescription history content -->
+
+                                                                            <table border="0" cellspacing="5" cellpadding="5">
+                                                                                <tbody>
+                                                                                    <div class="row">
+                                                                                        <tr>
+                                                                                            <td>Minimum date:</td>
+                                                                                            <td><input type="text" id="min" name="min"></td>
+
+                                                                                            <td>Maximum date:</td>
+                                                                                            <td><input type="text" id="max" name="max"></td>
+                                                                                        </tr>
+                                                                                    </div>
+                                                                                </tbody>
+                                                                            </table>
+                                                                            <table id="example3" class="display nowrap" style="width:100%">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <!-- <th>Patient Name</th> -->
+                                                                                        <th>Diagnosis</th>
+                                                                                        <!-- <th>Prescription</th> -->
+                                                                                        <th>Generated at</th>
+                                                                                        <th>Action</th>
+                                                                                        <!-- <th>Age</th>
+                                                                                        <th>Address</th>
+                                                                                        <th>Next check up</th> -->
+                                                                                        <!-- <th>Generated at</th> -->
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+
+                                                                                    @foreach($patient_diagnosis_history as $pdh)
+                                                                                    <tr>
+                                                                                        <td>{{Str::words($pdh->Diagnosis, 6, ' ...')}}</td>
+                                                                                        <td>
+                                                                                            <div class="d-flex justify-content-center">
+                                                                                                <div class="badge badge-warning badge-sm">{{ Carbon::parse($pdh->DateGenerated)->format('Y/m/d') }}</div>
+                                                                                            </div>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <button class="btn btn-primary btn-md" data-toggle="modal" data-target="#ViewPatientDiagnosisModal{{$pdh->id}}">View</button>
+                                                                                            <button class="btn btn-danger btn-md" data-toggle="modal" data-target="#ViewPatientDiagnosisModal{{$pdh->id}}">Delete</button>
+
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    @endforeach
+
+                                                                                </tbody>
+                                                                                <tfoot>
+                                                                                    <tr>
+                                                                                        <th>Diagnosis</th>
+                                                                                        <th>Generated at</th>
+                                                                                        <th>Action</th>
+                                                                                        <!-- <th>Prescription</th>
+                                                                                        <th>Generated at</th>
+                                                                                        <th>Age</th>
+                                                                                        <th>Address</th>
+                                                                                        <th>Next check up</th> -->
+                                                                                        <!-- <th>Generated at</th> -->
+                                                                                    </tr>
+                                                                                </tfoot>
+                                                                            </table>
+
+
+                                                                            <!-- prescription history content -->
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </section>
+                                                    <!-- laboratory findings table -->
+
+
+
+
+
+
+
+
+
+
+
+
 
                                                 </div>
                                             </div>
@@ -637,7 +529,7 @@
 
 
                                         <div>
-                                            <i class="fas fa-user bg-info"></i>
+                                        <i class="fas fa-clock"></i>
 
                                             <div class="timeline-item">
                                                 <div class="row" style="padding: 10px;">
@@ -655,7 +547,7 @@
 
 
                                         <div>
-                                            <i class="fas fa-user bg-info"></i>
+                                        <i class="fas fa-clock"></i>
                                             <div class="timeline-item">
                                                 <div class="row" style="padding: 10px;">
                                                     <div class="col-sm">
@@ -681,9 +573,7 @@
 
                                         <!-- /.timeline-label -->
 
-                                        <div>
-                                            <i class="far fa-clock bg-gray"></i>
-                                        </div>
+
                                     </div>
                                 </div>
                                 <!-- /.tab-pane -->
@@ -1194,13 +1084,13 @@
                     @csrf
                     <span><b>Diagnosis</b></span>
                     <textarea class="form-control" name="Diagnosis" placeholder="Type your diagnosis"></textarea>
-                    <input type="hidden" value="{{$patient_personal_info->id}}" name="PatientID"/>
-                    
+                    <input type="hidden" value="{{$patient_personal_info->id}}" name="PatientID" />
+
                     <div class="row">
                         <div class="col"></div>
                         <div class="float-right" style="padding: 10px;"><button class="btn btn-primary btn-md" type="submit">Submit</button></div>
                     </div>
-                    
+
                 </form>
             </div>
         </div>

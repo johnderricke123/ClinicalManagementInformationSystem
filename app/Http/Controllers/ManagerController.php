@@ -873,9 +873,29 @@ class ManagerController extends Controller
         return redirect()->back();
     }
 
-    public function manager_add_patient_diagnosis(Request $request){
+     public function manager_add_patient_diagnosis(Request $request){
         
-        return $request;
+        // return $request;
+
+        $patient_info = PatientPersonalInfo::find($request->PatientID);
+        $patient_fullname = $patient_info->FirstName." ".$patient_info->LastName;
+        // return $patient_fullname;
+        // return $patient_info;
+
+        $patient_diagnoses_db = new PatientDiagnosis();
+        $patient_diagnoses_db->patient_check_up_details_id = $request->PatientID;
+        $patient_diagnoses_db->PatientName = $patient_fullname;
+        $patient_diagnoses_db->Diagnosis = $request->Diagnosis;
+        $patient_diagnoses_db->DateGenerated = now();
+        $patient_diagnoses_db->save();
+
+        
+        Alert::success('Success', 'Successfully added!')->persistent(true, false);
+        return redirect()->back();
+
+        // $patient_diagnoses_db->PatientName
+
+        
 
     }
 }
