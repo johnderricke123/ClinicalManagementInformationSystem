@@ -12,11 +12,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('patient_diagnoses', function (Blueprint $table) {
+        Schema::create('laboratory_findings', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->foreignIdFor(PatientCheckUpDetails::class)->constrained()->cascadeOnDelete();
             $table->string('PatientName');
-            $table->longText('Diagnosis')->nullable();
+            $table->longText('LaboratoryFindings')->nullable();
             $table->dateTime('DateGenerated');
             $table->timestamps();
         });
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('patient_diagnoses');
+        Schema::dropIfExists('laboratory_findings');
     }
 };

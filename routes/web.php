@@ -94,6 +94,8 @@ Route::get('/ManagerGeneratePrescription',[ManagerController::class,'popup'])->n
 
     Route::post('/ManagerAddPatientDiagnosis', [ManagerController::class,'manager_add_patient_diagnosis'])->name('managerAddPatientDiagnosis');
 
+    Route::post('/ManagerAddPatientLaboratoryFindings', [ManagerController::class,'manager_add_patient_laboratory_findings'])->name('managerAddPatientLaboratoryFindings');
+
 
     
     

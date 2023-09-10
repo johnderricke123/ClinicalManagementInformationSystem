@@ -1,0 +1,24 @@
+2023-09-10 00:42:52: -- Analysis Started by On File Change First Full Analyze Upon Folder Connect
+2023-09-10 00:42:52: Changes: 13, Conflicts: 0, CopyTime: 0, FixState: 0, Errors: 0, All: 41
+2023-09-10 00:42:52: Left to Right: Copy File: 13 
+2023-09-10 00:42:52: == Sync Started by On File Change First Full Analyze Upon Folder Connect
+2023-09-10 00:42:52: ConnectCloned connected to file:///C:/xampp/htdocs/ClinicalInformationManagementSystem/public/PatientFiles
+2023-09-10 00:42:52: ConnectCloned connected to file:///C:/xampp/htdocs/ClinicalInformationManagementSystem/public/PatientFiles
+2023-09-10 00:42:52: ConnectCloned connected to file:///C:/xampp/htdocs/ClinicalInformationManagementSystem/public/PatientFiles
+2023-09-10 00:42:52: ConnectCloned connected to file:///~John Derricke/Desktop/BackupPatientFiles
+2023-09-10 00:42:52: ConnectCloned connected to file:///~John Derricke/Desktop/BackupPatientFiles
+2023-09-10 00:42:52: ConnectCloned connected to file:///~John Derricke/Desktop/BackupPatientFiles
+2023-09-10 00:42:52: Copy New 'C:/xampp/htdocs/ClinicalInformationManagementSystem/public/PatientFiles/20233885262KOE5t6Tpn.jpeg' -> 'C:/Users/John Derricke/Desktop/BackupPatientFiles/20233885262KOE5t6Tpn.jpeg' (429,011)
+2023-09-10 00:42:52: Copy New 'C:/xampp/htdocs/ClinicalInformationManagementSystem/public/PatientFiles/20233885269BtuJmteJ2.jpg' -> 'C:/Users/John Derricke/Desktop/BackupPatientFiles/20233885269BtuJmteJ2.jpg' (25,331)
+2023-09-10 00:42:52: Copy New 'C:/xampp/htdocs/ClinicalInformationManagementSystem/public/PatientFiles/2023388526ie8QmExiMb.jpg' -> 'C:/Users/John Derricke/Desktop/BackupPatientFiles/2023388526ie8QmExiMb.jpg' (102,353)
+2023-09-10 00:42:52: Copy New 'C:/xampp/htdocs/ClinicalInformationManagementSystem/public/PatientFiles/2023388526uS9C72eMiS.jpg' -> 'C:/Users/John Derricke/Desktop/BackupPatientFiles/2023388526uS9C72eMiS.jpg' (416,307)
+2023-09-10 00:42:52: Copy New 'C:/xampp/htdocs/ClinicalInformationManagementSystem/public/PatientFiles/2023697310dOYhwQe10Z.jpg' -> 'C:/Users/John Derricke/Desktop/BackupPatientFiles/2023697310dOYhwQe10Z.jpg' (783,278)
+2023-09-10 00:42:52: Copy New 'C:/xampp/htdocs/ClinicalInformationManagementSystem/public/PatientFiles/2023697310LXrdtd8ydH.jpg' -> 'C:/Users/John Derricke/Desktop/BackupPatientFiles/2023697310LXrdtd8ydH.jpg' (613,620)
+2023-09-10 00:42:52: Copy New 'C:/xampp/htdocs/ClinicalInformationManagementSystem/public/PatientFiles/2023697310MADsHdlPP0.jpg' -> 'C:/Users/John Derricke/Desktop/BackupPatientFiles/2023697310MADsHdlPP0.jpg' (576,051)
+2023-09-10 00:42:52: Copy New 'C:/xampp/htdocs/ClinicalInformationManagementSystem/public/PatientFiles/2023697310OJsGh8yYFN.jpg' -> 'C:/Users/John Derricke/Desktop/BackupPatientFiles/2023697310OJsGh8yYFN.jpg' (189,440)
+2023-09-10 00:42:52: Copy New 'C:/xampp/htdocs/ClinicalInformationManagementSystem/public/PatientFiles/2023697310OoK4FEVZZ2.jpg' -> 'C:/Users/John Derricke/Desktop/BackupPatientFiles/2023697310OoK4FEVZZ2.jpg' (329,994)
+2023-09-10 00:42:52: Copy New 'C:/xampp/htdocs/ClinicalInformationManagementSystem/public/PatientFiles/2023697310RhDVBqA1ND.jpg' -> 'C:/Users/John Derricke/Desktop/BackupPatientFiles/2023697310RhDVBqA1ND.jpg' (220,471)
+2023-09-10 00:42:52: Copy New 'C:/xampp/htdocs/ClinicalInformationManagementSystem/public/PatientFiles/2023697310VbtqDWlWNr.jpg' -> 'C:/Users/John Derricke/Desktop/BackupPatientFiles/2023697310VbtqDWlWNr.jpg' (200,704)
+2023-09-10 00:42:52: Copy New 'C:/xampp/htdocs/ClinicalInformationManagementSystem/public/PatientFiles/2023697310Xf9R43DXRk.jpg' -> 'C:/Users/John Derricke/Desktop/BackupPatientFiles/2023697310Xf9R43DXRk.jpg' (107,822)
+2023-09-10 00:42:52: Copy New 'C:/xampp/htdocs/ClinicalInformationManagementSystem/public/PatientFiles/2023697310XInlEw5eIK.jpg' -> 'C:/Users/John Derricke/Desktop/BackupPatientFiles/2023697310XInlEw5eIK.jpg' (784,227)
+2023-09-10 00:42:52: == Sync Complete. Time: 00:00:00, Speed: 0.00/s, OK: 13, Errors: 0

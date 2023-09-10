@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CompanyAccount;
+use App\Models\LaboratoryFinding;
 use App\Models\PatientCheckUpDetails;
 use App\Models\PatientDiagnosis;
 use App\Models\PatientFile;
@@ -896,6 +897,29 @@ class ManagerController extends Controller
         // $patient_diagnoses_db->PatientName
 
         
+
+    }
+
+    public function manager_add_patient_laboratory_findings(Request $request){
+
+        // return $request;
+
+        $patient_info = PatientPersonalInfo::find($request->PatientID);
+        $patient_fullname = $patient_info->FirstName." ".$patient_info->LastName;
+        // return $patient_fullname;
+        // return $patient_info;
+
+        $patient_diagnoses_db = new LaboratoryFinding();
+        $patient_diagnoses_db->patient_check_up_details_id = $request->PatientID;
+        $patient_diagnoses_db->PatientName = $patient_fullname;
+        $patient_diagnoses_db->LaboratoryFindings = $request->LaboratoryFindings;
+        $patient_diagnoses_db->DateGenerated = now();
+        $patient_diagnoses_db->save();
+
+        
+        Alert::success('Success', 'Successfully added!')->persistent(true, false);
+        return redirect()->back();
+
 
     }
 }

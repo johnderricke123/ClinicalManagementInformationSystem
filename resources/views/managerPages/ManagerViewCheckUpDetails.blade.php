@@ -258,56 +258,33 @@
 
 
 
-
-
-
-
-
-
-                                                                            <table border="0" cellspacing="5" cellpadding="5">
-                                                                                <tbody>
-                                                                                    <div class="row">
-                                                                                        <tr>
-                                                                                            <td>Minimum date:</td>
-                                                                                            <td><input type="text" id="min" name="min"></td>
-
-                                                                                            <td>Maximum date:</td>
-                                                                                            <td><input type="text" id="max" name="max"></td>
-                                                                                        </tr>
-                                                                                    </div>
-                                                                                </tbody>
-                                                                            </table>
-                                                                            <table id="example2" class="display nowrap" style="width:100%">
+                                                                            <table id="example3" class="display" style="width:100%">
                                                                                 <thead>
                                                                                     <tr>
-                                                                                        <!-- <th>Patient Name</th> -->
-                                                                                        <th>Diagnosis</th>
-                                                                                        <!-- <th>Prescription</th> -->
                                                                                         <th>Generated at</th>
+                                                                                        <th>Diagnosis</th>
                                                                                         <th>Action</th>
-                                                                                        <!-- <th>Age</th>
-                                                                                        <th>Address</th>
-                                                                                        <th>Next check up</th> -->
-                                                                                        <!-- <th>Generated at</th> -->
                                                                                     </tr>
                                                                                 </thead>
                                                                                 <tbody>
 
                                                                                     @foreach($patient_diagnosis_history as $pdh)
                                                                                     <tr>
-                                                                                        <td>{{Str::words($pdh->Diagnosis, 6, ' ...')}}</td>
                                                                                         <td>
                                                                                             <div class="d-flex justify-content-center">
-                                                                                                <div class="badge badge-warning badge-sm">{{ Carbon::parse($pdh->DateGenerated)->format('Y/m/d') }}</div>
+                                                                                                <div class="badge badge-warning badge-md">{{ Carbon::parse($pdh->DateGenerated)->format('Y/m/d g:i A') }}</div>
                                                                                             </div>
                                                                                         </td>
+                                                                                        <td>{{Str::words($pdh->Diagnosis, 6, ' ...')}}</td>
+
                                                                                         <td>
-                                                                                            <button class="btn btn-primary btn-md" data-toggle="modal" data-target="#ViewPatientDiagnosisModal{{$pdh->id}}">View</button>
-                                                                                            <button class="btn btn-danger btn-md" data-toggle="modal" data-target="#ViewPatientDiagnosisModal{{$pdh->id}}">Delete</button>
+                                                                                            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ViewPatientDiagnosisModal{{$pdh->id}}">View</button>
+                                                                                            <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#ViewPatientDiagnosisModal{{$pdh->id}}">Delete</button>
 
                                                                                         </td>
                                                                                     </tr>
                                                                                     @endforeach
+
 
                                                                                 </tbody>
                                                                                 <tfoot>
@@ -315,26 +292,9 @@
                                                                                         <th>Diagnosis</th>
                                                                                         <th>Generated at</th>
                                                                                         <th>Action</th>
-                                                                                        <!-- <th>Prescription</th>
-                                                                                        <th>Generated at</th>
-                                                                                        <th>Age</th>
-                                                                                        <th>Address</th>
-                                                                                        <th>Next check up</th> -->
-                                                                                        <!-- <th>Generated at</th> -->
                                                                                     </tr>
                                                                                 </tfoot>
                                                                             </table>
-
-
-
-
-
-
-
-
-
-
-
 
                                                                             <!-- prescription history content -->
                                                                         </div>
@@ -347,48 +307,14 @@
 
 
 
-
-
                                                     <!-- diagnosis table -->
 
 
-
-
                                                     <script>
-                                                        var minDate, maxDate;
-
-                                                        // Custom filtering function which will search data in column four between two values
-                                                        DataTable.ext.search.push(function(settings, data, dataIndex) {
-                                                            var min = minDate.val();
-                                                            var max = maxDate.val();
-                                                            var date = new Date(data[2]);
-
-                                                            if (
-                                                                (min === null && max === null) ||
-                                                                (min === null && date <= max) ||
-                                                                (min <= date && max === null) ||
-                                                                (min <= date && date <= max)
-                                                            ) {
-                                                                return true;
-                                                            }
-                                                            return false;
-                                                        });
-
-                                                        // Create date inputs
-                                                        minDate = new DateTime('#min', {
-                                                            format: 'MMMM Do YYYY'
-                                                        });
-                                                        maxDate = new DateTime('#max', {
-                                                            format: 'MMMM Do YYYY'
-                                                        });
-
-                                                        // DataTables initialisation
-
-                                                        var table = $('#example2').DataTable();
-
-                                                        // Refilter the table
-                                                        $('#min, #max').on('change', function() {
-                                                            table.draw();
+                                                        $('#example3').DataTable({
+                                                            "order": [
+                                                                    [0, 'desc']
+                                                                ], // 0 represents the index of the "Generated at" column, 'desc' means descending order
                                                         });
                                                     </script>
 
@@ -419,7 +345,7 @@
                                         <div>
                                             <i class="fa-solid fa-flask-gear"></i>
                                             <div class="timeline-item">
-                                                <h3 class="timeline-header"><a href="#">Laboratory Findings</a></h3>
+                                                <h3 class="timeline-header"><a href="#">Laboratory Findings <div class="float-right"> <button class="btn btn-sm text-blue" data-toggle="modal" data-target="#AddPatientLaboratoryFindingsModal"> <i class="fas fa-plus"></i> <b>Add a laboratory finding</b></button></div></a></h3>
                                                 <div class="timeline-body">
                                                     {!! nl2br(e($patient_check_up_details->LabFindings)) !!}
 
@@ -439,50 +365,33 @@
                                                                             <!-- <h1>Diagnosis history</h1> -->
                                                                             <!-- prescription history content -->
 
-                                                                            <table border="0" cellspacing="5" cellpadding="5">
-                                                                                <tbody>
-                                                                                    <div class="row">
-                                                                                        <tr>
-                                                                                            <td>Minimum date:</td>
-                                                                                            <td><input type="text" id="min" name="min"></td>
-
-                                                                                            <td>Maximum date:</td>
-                                                                                            <td><input type="text" id="max" name="max"></td>
-                                                                                        </tr>
-                                                                                    </div>
-                                                                                </tbody>
-                                                                            </table>
-                                                                            <table id="example3" class="display nowrap" style="width:100%">
+                                                                            <table id="example4" class="display" style="width:100%">
                                                                                 <thead>
                                                                                     <tr>
-                                                                                        <!-- <th>Patient Name</th> -->
-                                                                                        <th>Diagnosis</th>
-                                                                                        <!-- <th>Prescription</th> -->
                                                                                         <th>Generated at</th>
+                                                                                        <th>Diagnosis</th>
                                                                                         <th>Action</th>
-                                                                                        <!-- <th>Age</th>
-                                                                                        <th>Address</th>
-                                                                                        <th>Next check up</th> -->
-                                                                                        <!-- <th>Generated at</th> -->
                                                                                     </tr>
                                                                                 </thead>
                                                                                 <tbody>
 
                                                                                     @foreach($patient_diagnosis_history as $pdh)
                                                                                     <tr>
-                                                                                        <td>{{Str::words($pdh->Diagnosis, 6, ' ...')}}</td>
                                                                                         <td>
                                                                                             <div class="d-flex justify-content-center">
-                                                                                                <div class="badge badge-warning badge-sm">{{ Carbon::parse($pdh->DateGenerated)->format('Y/m/d') }}</div>
+                                                                                                <div class="badge badge-warning badge-md">{{ Carbon::parse($pdh->DateGenerated)->format('Y/m/d g:i A') }}</div>
                                                                                             </div>
                                                                                         </td>
+                                                                                        <td>{{Str::words($pdh->Diagnosis, 6, ' ...')}}</td>
+
                                                                                         <td>
-                                                                                            <button class="btn btn-primary btn-md" data-toggle="modal" data-target="#ViewPatientDiagnosisModal{{$pdh->id}}">View</button>
-                                                                                            <button class="btn btn-danger btn-md" data-toggle="modal" data-target="#ViewPatientDiagnosisModal{{$pdh->id}}">Delete</button>
+                                                                                            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ViewPatientDiagnosisModal{{$pdh->id}}">View</button>
+                                                                                            <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#ViewPatientDiagnosisModal{{$pdh->id}}">Delete</button>
 
                                                                                         </td>
                                                                                     </tr>
                                                                                     @endforeach
+
 
                                                                                 </tbody>
                                                                                 <tfoot>
@@ -490,12 +399,6 @@
                                                                                         <th>Diagnosis</th>
                                                                                         <th>Generated at</th>
                                                                                         <th>Action</th>
-                                                                                        <!-- <th>Prescription</th>
-                                                                                        <th>Generated at</th>
-                                                                                        <th>Age</th>
-                                                                                        <th>Address</th>
-                                                                                        <th>Next check up</th> -->
-                                                                                        <!-- <th>Generated at</th> -->
                                                                                     </tr>
                                                                                 </tfoot>
                                                                             </table>
@@ -510,6 +413,14 @@
                                                     </section>
                                                     <!-- laboratory findings table -->
 
+
+                                                    <script>
+                                                        $('#example4').DataTable({
+                                                            "order": [
+                                                                    [0, 'desc']
+                                                                ], // 0 represents the index of the "Generated at" column, 'desc' means descending order
+                                                        });
+                                                    </script>
 
 
 
@@ -529,7 +440,7 @@
 
 
                                         <div>
-                                        <i class="fas fa-clock"></i>
+                                            <i class="fas fa-clock"></i>
 
                                             <div class="timeline-item">
                                                 <div class="row" style="padding: 10px;">
@@ -537,7 +448,7 @@
                                                         <span class="timeline-header"><a href="#"><b>Date and time of check up</b></a> </span>
                                                     </div>
                                                     <div class="col-sm">
-                                                        <span class="timeline-header"><b>{{$patient_check_up_details->DateAndTimeOfCheckUp}}</b></span>
+                                                        <span class="timeline-header"><b>{{ Carbon::parse($patient_check_up_details->DateAndTimeOfCheckUp)->format('Y/m/d g:i A') }}</b></span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -547,14 +458,14 @@
 
 
                                         <div>
-                                        <i class="fas fa-clock"></i>
+                                            <i class="fas fa-clock"></i>
                                             <div class="timeline-item">
                                                 <div class="row" style="padding: 10px;">
                                                     <div class="col-sm">
                                                         <span class="timeline-header"><a href="#"><b>Registration date</b></a> </span>
                                                     </div>
                                                     <div class="col-sm">
-                                                        <span class="timeline-header"><b>{{$patient_check_up_details->Added_at}}</b></span>
+                                                        <span class="timeline-header"><b>{{ Carbon::parse($patient_check_up_details->Added_at)->format('Y/m/d') }}</b></span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -949,62 +860,62 @@
 
 
 
+                                                            <div class="container-fluid">
+                                                                <table border="0" cellspacing="5" cellpadding="5">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>Minimum date:</td>
+                                                                            <td><input type="text" id="min" name="min"></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Maximum date:</td>
+                                                                            <td><input type="text" id="max" name="max"></td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                                <table id="example" class="display nowrap" style="width:100%">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Patient Name</th>
+                                                                            <th>Gender</th>
+                                                                            <th>Prescription</th>
+                                                                            <th>Generated at</th>
+                                                                            <th>Age</th>
+                                                                            <th>Address</th>
+                                                                            <th>Next check up</th>
+                                                                            <!-- <th>Generated at</th> -->
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
 
-                                                            <table border="0" cellspacing="5" cellpadding="5">
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td>Minimum date:</td>
-                                                                        <td><input type="text" id="min" name="min"></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>Maximum date:</td>
-                                                                        <td><input type="text" id="max" name="max"></td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                            <table id="example" class="display nowrap" style="width:100%">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>Patient Name</th>
-                                                                        <th>Gender</th>
-                                                                        <th>Prescription</th>
-                                                                        <th>Generated at</th>
-                                                                        <th>Age</th>
-                                                                        <th>Address</th>
-                                                                        <th>Next check up</th>
-                                                                        <!-- <th>Generated at</th> -->
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
+                                                                        @foreach($patient_prescription_histories as $pph)
+                                                                        <tr>
+                                                                            <td>{{$pph->PatientName}}</td>
+                                                                            <td>{{$pph->Gender}}</td>
+                                                                            <td>{{Str::words($pph->Prescription, 6, ' ...')}}</td>
+                                                                            <td>{{ Carbon::parse($pph->DateAndTime)->format('Y/m/d') }}</td>
+                                                                            <td>{{$pph->Age}}</td>
+                                                                            <td>{{$pph->Address}}</td>
+                                                                            <td>{{$pph->NextCheckUp}}</td>
+                                                                            <!-- <td>{{$pph->created_at}}</td> -->
+                                                                        </tr>
+                                                                        @endforeach
 
-                                                                    @foreach($patient_prescription_histories as $pph)
-                                                                    <tr>
-                                                                        <td>{{$pph->PatientName}}</td>
-                                                                        <td>{{$pph->Gender}}</td>
-                                                                        <td>{{Str::words($pph->Prescription, 6, ' ...')}}</td>
-                                                                        <td>{{ Carbon::parse($pph->DateAndTime)->format('Y/m/d') }}</td>
-                                                                        <td>{{$pph->Age}}</td>
-                                                                        <td>{{$pph->Address}}</td>
-                                                                        <td>{{$pph->NextCheckUp}}</td>
-                                                                        <!-- <td>{{$pph->created_at}}</td> -->
-                                                                    </tr>
-                                                                    @endforeach
-
-                                                                </tbody>
-                                                                <tfoot>
-                                                                    <tr>
-                                                                        <th>Patient Name</th>
-                                                                        <th>Gender</th>
-                                                                        <th>Prescription</th>
-                                                                        <th>Generated at</th>
-                                                                        <th>Age</th>
-                                                                        <th>Address</th>
-                                                                        <th>Next check up</th>
-                                                                        <!-- <th>Generated at</th> -->
-                                                                    </tr>
-                                                                </tfoot>
-                                                            </table>
-
+                                                                    </tbody>
+                                                                    <tfoot>
+                                                                        <tr>
+                                                                            <th>Patient Name</th>
+                                                                            <th>Gender</th>
+                                                                            <th>Prescription</th>
+                                                                            <th>Generated at</th>
+                                                                            <th>Age</th>
+                                                                            <th>Address</th>
+                                                                            <th>Next check up</th>
+                                                                            <!-- <th>Generated at</th> -->
+                                                                        </tr>
+                                                                    </tfoot>
+                                                                </table>
+                                                            </div>
 
 
 
@@ -1066,6 +977,35 @@
 
 
 <!-- _________________________Modals_________________________ -->
+
+<div class="modal fade" id="AddPatientLaboratoryFindingsModal" tabindex="-1" role="dialog" aria-labelledby="AddPatientLaboratoryFindingsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="AddPatientLaboratoryFindingsModalLabel">Add a laboratory findings</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h4>Add laboratory findings modal</h4>
+                <form method="post" action="{{route ('managerAddPatientLaboratoryFindings')}}">
+                    @csrf
+                    <span><b>Laboratory findings</b></span>
+                    <textarea style="height: 3in;" class="form-control" name="LaboratoryFindings" placeholder="Type your findings"></textarea>
+                    <input type="hidden" value="{{$patient_personal_info->id}}" name="PatientID" />
+
+                    <div class="row">
+                        <div class="col"></div>
+                        <div class="float-right" style="padding: 10px;"><button class="btn btn-primary btn-md" type="submit">Submit</button></div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 
