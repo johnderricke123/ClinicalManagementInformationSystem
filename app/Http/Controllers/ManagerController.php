@@ -39,8 +39,10 @@ class ManagerController extends Controller
         $total_patients = PatientPersonalInfo::all()->count();
         $total_company_accounts = CompanyAccount::all()->count();
         $scheduled_list = ScheduledList::all();
-
-        return view('managerPages.ManagerDashboard', compact('total_patients', 'total_company_accounts', 'scheduled_list'));
+        $total_waitlist = WaitingList::all()->count();
+        $total_booked_patients = ScheduledList::all()->count();
+        // return $total_waitlist;
+        return view('managerPages.ManagerDashboard', compact('total_patients', 'total_company_accounts', 'scheduled_list','total_waitlist','total_booked_patients'));
     }
 
     public function to_manager_transaction_history()
@@ -476,6 +478,7 @@ class ManagerController extends Controller
         $patient_profiles = PatientProfile::where('patient_personal_info_id', '=', $id)->get();
         $patient_prescription_histories = PrescriptionHistory::where('patient_personal_info_id', '=', $id)->get();
         $patient_diagnosis_history = PatientDiagnosis::where('patient_check_up_details_id', '=', $id)->get();
+        $patient_laboratory_findings = LaboratoryFinding::where('patient_check_up_details_id', '=', $id)->get();
         // return $patient_prescription_histories;
         // if(!$patient_profiles){
 
@@ -483,7 +486,7 @@ class ManagerController extends Controller
 
         // }
         // return $patient_profiles;
-        return view('managerPages.ManagerViewCheckUpDetails', compact('patient_personal_info', 'patient_check_up_details', 'patient_files', 'patient_profiles','patient_prescription_histories','patient_diagnosis_history'));
+        return view('managerPages.ManagerViewCheckUpDetails', compact('patient_personal_info', 'patient_check_up_details', 'patient_files', 'patient_profiles','patient_prescription_histories','patient_diagnosis_history','patient_laboratory_findings'));
     }
 
     public function manager_initial_view_check_up_details(Request $request, $id)

@@ -37,7 +37,7 @@
       <div class="inner">
         <h3>{{$total_company_accounts}}</h3>
 
-        <p>Tota accounts</p>
+        <p>Total accounts</p>
       </div>
       <div class="icon">
         <i class="ion ion-person"></i>
@@ -60,34 +60,35 @@
       <a href="/ManagerTransactionHistory" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div>
+
   <!-- ./col -->
-  <!-- <div class="col-lg-3 col-6">
+  <div class="col-lg-3 col-6">
         <div class="small-box bg-warning">
           <div class="inner">
-            <h3>44,000php</h3>
+            <h3>{{$total_waitlist}}</h3>
 
-            <p>Total income</p>
+            <p>Total Waitlist</p>
           </div>
           <div class="icon">
             <i class="ion ion-stats-bars"></i>
           </div>
                 <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
         </div>
-      </div> -->
+      </div>
   <!-- ./col -->
-  <!-- <div class="col-lg-3 col-6">
+  <div class="col-lg-3 col-6">
     <div class="small-box bg-danger">
       <div class="inner">
-        <h3>65</h3>
+        <h3>{{$total_booked_patients}}</h3>
 
-        <p>Unique Visitors</p>
+        <p>Booked Patients</p>
       </div>
       <div class="icon">
         <i class="ion ion-pie-graph"></i>
       </div>
       <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
     </div>
-  </div> -->
+  </div>
   <!-- ./col -->
 </div>
 <!-- /.row -->

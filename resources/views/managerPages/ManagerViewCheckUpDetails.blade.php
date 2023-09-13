@@ -60,7 +60,7 @@
                                 <!-- <img class="profile-user-img img-fluid img-circle" src="../../dist/img/user4-128x128.jpg" alt="User profile picture"> -->
                                 <!-- <img src="dist/img/user2-160x160.jpg" alt=""/> -->
                                 @if($patient_profiles->count() > 0)
-                                <img class="profile-user-img img-fluid img-circle" src="{{ asset($patient_profiles[0]->Path)}}" style="width: 200px; height: 200px;" alt="Logo">
+                                <img class="profile-user-img img-fluid img-circle" src="{{ asset($patient_profiles[0]->Path)}}" style="width: 100px; height: 90px;" alt="Logo">
                                 @endif
                                 @if($patient_profiles->count() <= 0 && $patient_personal_info->Gender == 'Male' )
                                     <img class="profile-user-img img-fluid img-circle" src="{{ asset('dist/img/avatar.png')}}" alt="profile" />
@@ -279,7 +279,7 @@
 
                                                                                         <td>
                                                                                             <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ViewPatientDiagnosisModal{{$pdh->id}}">View</button>
-                                                                                            <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#ViewPatientDiagnosisModal{{$pdh->id}}">Delete</button>
+                                                                                            <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#DeletePatientDiagnosisModal{{$pdh->id}}">Delete</button>
 
                                                                                         </td>
                                                                                     </tr>
@@ -369,24 +369,24 @@
                                                                                 <thead>
                                                                                     <tr>
                                                                                         <th>Generated at</th>
-                                                                                        <th>Diagnosis</th>
+                                                                                        <th>Findings</th>
                                                                                         <th>Action</th>
                                                                                     </tr>
                                                                                 </thead>
                                                                                 <tbody>
 
-                                                                                    @foreach($patient_diagnosis_history as $pdh)
+                                                                                    @foreach($patient_laboratory_findings as $plf)
                                                                                     <tr>
                                                                                         <td>
                                                                                             <div class="d-flex justify-content-center">
-                                                                                                <div class="badge badge-warning badge-md">{{ Carbon::parse($pdh->DateGenerated)->format('Y/m/d g:i A') }}</div>
+                                                                                                <div class="badge badge-warning badge-md">{{ Carbon::parse($plf->DateGenerated)->format('Y/m/d g:i A') }}</div>
                                                                                             </div>
                                                                                         </td>
-                                                                                        <td>{{Str::words($pdh->Diagnosis, 6, ' ...')}}</td>
+                                                                                        <td>{{Str::words($plf->LaboratoryFindings, 6, ' ...')}}</td>
 
                                                                                         <td>
-                                                                                            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ViewPatientDiagnosisModal{{$pdh->id}}">View</button>
-                                                                                            <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#ViewPatientDiagnosisModal{{$pdh->id}}">Delete</button>
+                                                                                            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ViewPatientLaboratoryFindingsModal{{$plf->id}}">View</button>
+                                                                                            <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#DeletePatientLaboratoryFindingsModal{{$plf->id}}">Delete</button>
 
                                                                                         </td>
                                                                                     </tr>
@@ -978,6 +978,54 @@
 
 <!-- _________________________Modals_________________________ -->
 
+
+@foreach($patient_laboratory_findings as $plfMod)
+<div class="modal fade" id="ViewPatientLaboratoryFindingsModal{{$plfMod->id}}" tabindex="-1" role="dialog" aria-labelledby="ViewPatientDiagnosisModalLabel{{$plfMod->id}}" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ViewPatientDiagnosisModalLabel{{$plfMod->id}}">Patient's laboratory findings modal</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <span><b>{{$plfMod->DateGenerated}}</b></span>
+                <span>{!! nl2br(e($plfMod->LaboratoryFindings)) !!}</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+@endforeach
+
+
+@foreach($patient_laboratory_findings as $plfMod)
+<div class="modal fade" id="DeletePatientLaboratoryFindingsModal{{$plfMod->id}}" tabindex="-1" role="dialog" aria-labelledby="DeletePatientLaboratoryFindingsModalLabel{{$plfMod->id}}" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="DeletePatientLaboratoryFindingsModalLabel{{$plfMod->id}}">Patient's laboratory findings modal</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <span><b>{{$plfMod->DateGenerated}}</b></span>
+                <span>{!! nl2br(e($plfMod->LaboratoryFindings)) !!}</span>
+                <input type="text" value="{{$plfMod->id}}" name="id"/>
+            </div>
+        </div>
+    </div>
+</div>
+
+@endforeach
+
+<!-- DeletePatientLaboratoryFindingsModal{{$plf->id}} -->
+
+
+
+
 <div class="modal fade" id="AddPatientLaboratoryFindingsModal" tabindex="-1" role="dialog" aria-labelledby="AddPatientLaboratoryFindingsModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -1052,6 +1100,30 @@
                 <!-- <h1>View diagnosis modal {{$pdhMod->id}}</h1> -->
                 <span><b>{{$pdhMod->DateGenerated}}</b></span>
                 <span>{!! nl2br(e($pdhMod->Diagnosis)) !!}</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+@endforeach
+
+
+
+@foreach($patient_diagnosis_history as $pdhMod)
+<div class="modal fade" id="DeletePatientDiagnosisModal{{$pdhMod->id}}" tabindex="-1" role="dialog" aria-labelledby="DeletePatientDiagnosisModalLabel{{$pdhMod->id}}" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="DeletePatientDiagnosisModalLabel{{$pdhMod->id}}">Patient's diagnosis</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- <h1>View diagnosis modal {{$pdhMod->id}}</h1> -->
+                <span><b>{{$pdhMod->DateGenerated}}</b></span>
+                <span>{!! nl2br(e($pdhMod->Diagnosis)) !!}</span>
+                <input type="text" value="{{$pdhMod->id}}" name="id"/>
             </div>
         </div>
     </div>
