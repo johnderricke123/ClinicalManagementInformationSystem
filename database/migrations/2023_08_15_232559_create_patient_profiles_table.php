@@ -15,6 +15,7 @@ return new class extends Migration
         Schema::create('patient_profiles', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(PatientPersonalInfo::class)->constrained()->cascadeOnDelete();
+            $table->string('Alias');
             $table->string('FileName');
             $table->string('Path');
             $table->string('Added_at');
