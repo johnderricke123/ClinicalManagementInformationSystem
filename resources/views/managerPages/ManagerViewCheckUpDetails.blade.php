@@ -313,8 +313,8 @@
                                                     <script>
                                                         $('#example3').DataTable({
                                                             "order": [
-                                                                    [0, 'desc']
-                                                                ], // 0 represents the index of the "Generated at" column, 'desc' means descending order
+                                                                [0, 'desc']
+                                                            ], // 0 represents the index of the "Generated at" column, 'desc' means descending order
                                                         });
                                                     </script>
 
@@ -347,7 +347,7 @@
                                             <div class="timeline-item">
                                                 <h3 class="timeline-header"><a href="#">Laboratory Findings <div class="float-right"> <button class="btn btn-sm text-blue" data-toggle="modal" data-target="#AddPatientLaboratoryFindingsModal"> <i class="fas fa-plus"></i> <b>Add a laboratory finding</b></button></div></a></h3>
                                                 <div class="timeline-body">
-                                                    {!! nl2br(e($patient_check_up_details->LabFindings)) !!}
+                                                    
 
 
 
@@ -417,8 +417,8 @@
                                                     <script>
                                                         $('#example4').DataTable({
                                                             "order": [
-                                                                    [0, 'desc']
-                                                                ], // 0 represents the index of the "Generated at" column, 'desc' means descending order
+                                                                [0, 'desc']
+                                                            ], // 0 represents the index of the "Generated at" column, 'desc' means descending order
                                                         });
                                                     </script>
 
@@ -507,6 +507,15 @@
 
 
 
+
+
+
+
+
+
+
+
+
                                     <section class="content">
                                         <div class="container-fluid">
                                             <div class="row">
@@ -516,157 +525,142 @@
                                                             <h4 class="card-title">Files</h4>
                                                         </div>
                                                         <div class="card-body">
-                                                            <div class="row">
-                                                                @foreach($patient_files as $pf)
-                                                                <div class="col-sm-2">
-                                                                    <!-- <a href="{{ asset($pf->Path)}}" data-toggle="lightbox" data-title="{{$pf->FileName}}" data-gallery="gallery" style="height: 1000px;"> -->
-                                                                    <!-- <img src="https://via.placeholder.com/300/FFFFFF?text=1" class="img-fluid mb-2" alt="white sample"/> -->
-                                                                    <!-- <img src="{{ asset($pf->Path)}}" class="img-fluid mb-2" alt="white sample" style="height: 100px;" /> -->
-                                                                    </a>
+                                                            <!-- <div class="row"> -->
+
+
+                                                            <!-- Testing table for images -->
+                                                            <form method="post" action="{{ route('managerDeleteAllSelectedImages')}}" enctype="multipart/form-data">
+                                                                @csrf
+                                                                <!-- <div class="card"> -->
+                                                                <div class="card-header border-0">
+                                                                    <h3 class="card-title">Images</h3>
+                                                                    <div class="card-tools">
+                                                                        <a href="#" class="btn btn-tool btn-sm" data-toggle="modal" data-target="#UploadPatientImageModal">
+                                                                            <i class="fas fa-plus"></i> Upload
+                                                                        </a>
+                                                                        <button type="submit" class="btn btn-tool btn-sm">
+                                                                            <i class="fas fa-trash"></i> Delete Selection
+                                                                        </button>
+                                                                    </div>
                                                                 </div>
-                                                                @endforeach
-
-                                                                <!-- Testing table for images -->
-                                                                <form method="post" action="{{ route('managerDeleteAllSelectedImages')}}" enctype="multipart/form-data">
-                                                                    @csrf
-                                                                    <div class="card">
-                                                                        <div class="card-header border-0">
-                                                                            <h3 class="card-title">Images</h3>
-                                                                            <div class="card-tools">
-                                                                                <a href="#" class="btn btn-tool btn-sm" data-toggle="modal" data-target="#UploadPatientImageModal">
-                                                                                    <i class="fas fa-plus"></i> Upload
-                                                                                </a>
-                                                                                <button type="submit" class="btn btn-tool btn-sm">
-                                                                                    <i class="fas fa-trash"></i> Delete Selection
-                                                                                </button>
-                                                                            </div>
-                                                                        </div>
 
 
-                                                                        <div class="card-body table-responsive p-0">
-                                                                            <table class="table table-striped table-valign-middle">
-                                                                                <thead>
-                                                                                    <tr>
-                                                                                        <th>Checkbox</th>
-                                                                                        <th>Image</th>
-                                                                                        <th>Filename</th>
-                                                                                        <th>Date and time uploaded</th>
-                                                                                        <th>Action</th>
-                                                                                    </tr>
-                                                                                </thead>
-                                                                                <tbody>
-                                                                                    @foreach($patient_files as $pf)
-                                                                                    <tr>
-                                                                                        <td>
-                                                                                            <div class="form-check">
-                                                                                                <div class="d-flex justify-content-center">
-                                                                                                    <input class="form-check-input" type="checkbox" value="{{$pf->id}}" name="imageID[]" id="flexCheckDefault">
-                                                                                                    <!-- <input type="hidden" value="{{$pf->Path}}" name="ImagePath[]" id="flexCheckDefault" /> -->
+                                                                <!-- <div class="card-body table-responsive p-0"> -->
 
-                                                                                                </div>
 
+
+
+
+                                                                <!-- images table -->
+
+                                                                <div class="card" style="padding: 10px;">
+                                                                    <table id="example5" class="container-fluid">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>Checkbox</th>
+                                                                                <th>Image</th>
+                                                                                <th>Alias</th>
+                                                                                <th>Filename</th>
+                                                                                <th>Date and time uploaded</th>
+                                                                                <th>Action</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+
+                                                                            @foreach($patient_files as $pf)
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <div class="form-check">
+                                                                                        <div class="d-flex justify-content-center">
+                                                                                            <input class="form-check-input" type="checkbox" value="{{$pf->id}}" name="imageID[]" id="flexCheckDefault">
+                                                                                            <!-- <input type="hidden" value="{{$pf->Path}}" name="ImagePath[]" id="flexCheckDefault" /> -->
+
+                                                                                        </div>
+
+                                                                                    </div>
+                                                                                </td>
+
+                                                                                <td>
+                                                                                    <a href="{{ asset($pf->Path)}}" data-toggle="lightbox" data-title="{{$pf->FileName}}" data-gallery="gallery" style="height: 1000px;">
+                                                                                        <!-- <img src="{{ asset($pf->Path)}}" alt="Product 1" class="img-circle img-size-32 mr-2"> -->
+                                                                                        <img src="{{ asset($pf->Path)}}" class="img-fluid mb-2" alt="white sample" style="height: 100px; width: 100px;" />
+
+
+                                                                                </td>
+
+                                                                                <td>
+                                                                                    <?php
+
+                                                                                    if ($pf->Alias) {
+
+                                                                                        echo $pf->Alias;
+                                                                                    } else {
+                                                                                        echo "<i class=\"text-muted\" >Null</i>";
+                                                                                    }
+
+                                                                                    ?> 
+                                                                                </td>
+
+                                                                                <td>{{$pf->FileName}}</td>
+                                                                                <td>
+
+                                                                                    {{ Carbon::parse($pf->Added_at)->format('Y/m/d g:i A') }}
+                                                                                </td>
+                                                                                <td>
+                                                                                    <a href="#" class="text-muted">
+                                                                                        <div class="row">
+                                                                                            <div class="col-sm">
+                                                                                                <a class="btn btn-primary btn-sm text-white" data-toggle="modal" data-target="#SetAliasImageModal{{$pf->id}}">
+                                                                                                    <i class="fas fa-edit"></i> Edit
+                                                                                                </a>
                                                                                             </div>
-                                                                                        </td>
-                                                                                        <td>
-                                                                                            <a href="{{ asset($pf->Path)}}" data-toggle="lightbox" data-title="{{$pf->FileName}}" data-gallery="gallery" style="height: 1000px;">
-                                                                                                <!-- <img src="{{ asset($pf->Path)}}" alt="Product 1" class="img-circle img-size-32 mr-2"> -->
-                                                                                                <img src="{{ asset($pf->Path)}}" class="img-fluid mb-2" alt="white sample" style="height: 100px; width: 100px;" />
-
-
-                                                                                        </td>
-                                                                                        <td>{{$pf->FileName}}</td>
-                                                                                        <td>
-                                                                                            <!-- <small class="text-success mr-1">
-                                                                            <i class="fas fa-arrow-up"></i>
-                                                                            12%
-                                                                        </small>
-                                                                        12,000 Sold -->
-                                                                                            {{$pf->Added_at}}
-                                                                                        </td>
-                                                                                        <td>
-                                                                                            <a href="#" class="text-muted">
-                                                                                                <!-- <form method="post" action="/ManagerDeleteImage">
-                                                                                    @csrf -->
-                                                                                                <!-- <button class="btn btn-tool btn-sm" data-toggle="modal" data-target="#UploadPatientImageModal"> -->
+                                                                                            <div class="col-sm">
                                                                                                 <a class="btn btn-danger btn-sm text-white" data-toggle="modal" data-target="#DeleteImageModal{{$pf->id}}">
                                                                                                     <i class="fas fa-trash"></i> Delete
                                                                                                 </a>
-
-                                                                                                <!-- <input type="hidden" value="{{$pf->Path}}" name="ImagePath"/> -->
-                                                                                                <!-- </form> -->
-                                                                                            </a>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                    @endforeach
-
-                                                                                </tbody>
-                                                                            </table>
-                                                                        </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </a>
+                                                                                </td>
+                                                                            </tr>
+                                                                            @endforeach
 
 
+                                                                        </tbody>
+                                                                        <tfoot>
+                                                                            <tr>
+                                                                                <th>Checkbox</th>
+                                                                                <th>Image</th>
+                                                                                <th>Filename</th>
+                                                                                <th>Date and time uploaded</th>
+                                                                                <th>Action</th>
+                                                                            </tr>
+                                                                        </tfoot>
+                                                                    </table>
+                                                                </div>
 
-                                                                    </div>
-                                                                </form>
-                                                                <!-- /.card -->
-                                                                <!-- Testing table for images -->
+
+                                                                <!-- diagnosis table -->
 
 
-                                                                <!-- <div class="col-sm-2">
-                                                    <a href="https://via.placeholder.com/1200/000000.png?text=2" data-toggle="lightbox" data-title="sample 2 - black" data-gallery="gallery">
-                                                    <img src="https://via.placeholder.com/300/000000?text=2" class="img-fluid mb-2" alt="black sample"/>
-                                                    </a>
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    <a href="https://via.placeholder.com/1200/FF0000/FFFFFF.png?text=3" data-toggle="lightbox" data-title="sample 3 - red" data-gallery="gallery">
-                                                    <img src="https://via.placeholder.com/300/FF0000/FFFFFF?text=3" class="img-fluid mb-2" alt="red sample"/>
-                                                    </a>
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    <a href="https://via.placeholder.com/1200/FF0000/FFFFFF.png?text=4" data-toggle="lightbox" data-title="sample 4 - red" data-gallery="gallery">
-                                                    <img src="https://via.placeholder.com/300/FF0000/FFFFFF?text=4" class="img-fluid mb-2" alt="red sample"/>
-                                                    </a>
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    <a href="https://via.placeholder.com/1200/000000.png?text=5" data-toggle="lightbox" data-title="sample 5 - black" data-gallery="gallery">
-                                                    <img src="https://via.placeholder.com/300/000000?text=5" class="img-fluid mb-2" alt="black sample"/>
-                                                    </a>
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    <a href="https://via.placeholder.com/1200/FFFFFF.png?text=6" data-toggle="lightbox" data-title="sample 6 - white" data-gallery="gallery">
-                                                    <img src="https://via.placeholder.com/300/FFFFFF?text=6" class="img-fluid mb-2" alt="white sample"/>
-                                                    </a>
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    <a href="https://via.placeholder.com/1200/FFFFFF.png?text=7" data-toggle="lightbox" data-title="sample 7 - white" data-gallery="gallery">
-                                                    <img src="https://via.placeholder.com/300/FFFFFF?text=7" class="img-fluid mb-2" alt="white sample"/>
-                                                    </a>
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    <a href="https://via.placeholder.com/1200/000000.png?text=8" data-toggle="lightbox" data-title="sample 8 - black" data-gallery="gallery">
-                                                    <img src="https://via.placeholder.com/300/000000?text=8" class="img-fluid mb-2" alt="black sample"/>
-                                                    </a>
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    <a href="https://via.placeholder.com/1200/FF0000/FFFFFF.png?text=9" data-toggle="lightbox" data-title="sample 9 - red" data-gallery="gallery">
-                                                    <img src="https://via.placeholder.com/300/FF0000/FFFFFF?text=9" class="img-fluid mb-2" alt="red sample"/>
-                                                    </a>
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    <a href="https://via.placeholder.com/1200/FFFFFF.png?text=10" data-toggle="lightbox" data-title="sample 10 - white" data-gallery="gallery">
-                                                    <img src="https://via.placeholder.com/300/FFFFFF?text=10" class="img-fluid mb-2" alt="white sample"/>
-                                                    </a>
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    <a href="https://via.placeholder.com/1200/FFFFFF.png?text=11" data-toggle="lightbox" data-title="sample 11 - white" data-gallery="gallery">
-                                                    <img src="https://via.placeholder.com/300/FFFFFF?text=11" class="img-fluid mb-2" alt="white sample"/>
-                                                    </a>
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    <a href="https://via.placeholder.com/1200/000000.png?text=12" data-toggle="lightbox" data-title="sample 12 - black" data-gallery="gallery">
-                                                    <img src="https://via.placeholder.com/300/000000?text=12" class="img-fluid mb-2" alt="black sample"/>
-                                                    </a>
-                                                </div> -->
-                                                            </div>
+                                                                <script>
+                                                                    $('#example5').DataTable({
+                                                                        "order": [
+                                                                            [4, 'desc']
+                                                                        ], // 0 represents the index of the "Generated at" column, 'desc' means descending order
+                                                                    });
+                                                                </script>
+
+                                                                <!-- images table -->
+
+
+                                                                <!-- </div> -->
+
+
+
+                                                                <!-- </div> -->
+                                                            </form>
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -981,7 +975,7 @@
 
 @foreach($patient_laboratory_findings as $plfMod)
 <div class="modal fade" id="ViewPatientLaboratoryFindingsModal{{$plfMod->id}}" tabindex="-1" role="dialog" aria-labelledby="ViewPatientDiagnosisModalLabel{{$plfMod->id}}" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="ViewPatientDiagnosisModalLabel{{$plfMod->id}}">Patient's laboratory findings modal</h5>
@@ -990,7 +984,9 @@
                 </button>
             </div>
             <div class="modal-body">
+                <div class="row">
                 <span><b>{{$plfMod->DateGenerated}}</b></span>
+                </div>
                 <span>{!! nl2br(e($plfMod->LaboratoryFindings)) !!}</span>
             </div>
         </div>
@@ -1013,7 +1009,7 @@
             <div class="modal-body">
                 <span><b>{{$plfMod->DateGenerated}}</b></span>
                 <span>{!! nl2br(e($plfMod->LaboratoryFindings)) !!}</span>
-                <input type="text" value="{{$plfMod->id}}" name="id"/>
+                <input type="text" value="{{$plfMod->id}}" name="id" />
             </div>
         </div>
     </div>
@@ -1058,10 +1054,10 @@
 
 
 <div class="modal fade" id="AddPatientDiagnosisModal" tabindex="-1" role="dialog" aria-labelledby="AddPatientDiagnosisModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="AddPatientDiagnosisModalLabel">Upload Patient Image</h5>
+                <h5 class="modal-title" id="AddPatientDiagnosisModalLabel">Upload Patient diagnosis</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -1071,7 +1067,7 @@
                 <form method="post" action="{{route ('managerAddPatientDiagnosis')}}">
                     @csrf
                     <span><b>Diagnosis</b></span>
-                    <textarea class="form-control" name="Diagnosis" placeholder="Type your diagnosis"></textarea>
+                    <textarea class="form-control" name="Diagnosis" placeholder="Type your diagnosis" style="height: 6in;" ></textarea>
                     <input type="hidden" value="{{$patient_personal_info->id}}" name="PatientID" />
 
                     <div class="row">
@@ -1088,7 +1084,7 @@
 
 @foreach($patient_diagnosis_history as $pdhMod)
 <div class="modal fade" id="ViewPatientDiagnosisModal{{$pdhMod->id}}" tabindex="-1" role="dialog" aria-labelledby="ViewPatientDiagnosisModalLabel{{$pdhMod->id}}" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="ViewPatientDiagnosisModalLabel{{$pdhMod->id}}">Patient's diagnosis</h5>
@@ -1098,7 +1094,9 @@
             </div>
             <div class="modal-body">
                 <!-- <h1>View diagnosis modal {{$pdhMod->id}}</h1> -->
-                <span><b>{{$pdhMod->DateGenerated}}</b></span>
+                <div class="row">
+                    <span><b>{{$pdhMod->DateGenerated}}</b></span>
+                </div>
                 <span>{!! nl2br(e($pdhMod->Diagnosis)) !!}</span>
             </div>
         </div>
@@ -1123,7 +1121,7 @@
                 <!-- <h1>View diagnosis modal {{$pdhMod->id}}</h1> -->
                 <span><b>{{$pdhMod->DateGenerated}}</b></span>
                 <span>{!! nl2br(e($pdhMod->Diagnosis)) !!}</span>
-                <input type="text" value="{{$pdhMod->id}}" name="id"/>
+                <input type="text" value="{{$pdhMod->id}}" name="id" />
             </div>
         </div>
     </div>
@@ -1135,6 +1133,7 @@
 
 
 <form method="post" action="{{ route('managerEditPatientInformations')}}">
+{{ method_field('PUT') }}
     @csrf
     <div class="modal fade" id="EditPatientModal" tabindex="-1" role="dialog" aria-labelledby="EditPatientModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
@@ -1175,19 +1174,16 @@
                                         <label>Doctor's Name</label>
                                         <input type="text" class="form-control" style="width: 100%;" name="DoctorName" value="{{$patient_check_up_details->DoctorName}}" required="true" />
                                     </div>
-                                    <div class="form-group">
+                                    <!-- <div class="form-group">
                                         <label>Laboratory findings</label>
                                         <textarea class="form-control" multiple="multiple" data-placeholder="Type your findings here" style="width: 100%; height: 100px;" name="LaboratoryFindings" required="true"> {{$patient_check_up_details->LabFindings}}</textarea>
-                                    </div>
-                                    <!-- /.form-group -->
-                                    <!-- /.form-group -->
+                                    </div> -->
                                 </div>
-                                <!-- /.col -->
                                 <div class="col-md-6">
-                                    <div class="form-group">
+                                    <!-- <div class="form-group">
                                         <label>Diagnosis</label>
                                         <textarea class="form-control" multiple="multiple" style="width: 100%; height: 100px;" name="Diagnosis" required="true"> {{$patient_check_up_details->Diagnosis}} </textarea>
-                                    </div>
+                                    </div> -->
                                     <!-- /.form-group -->
                                     <!-- <div class="form-group">
             <label>Date and time of check up</label>
@@ -1380,6 +1376,59 @@
 
 
 
+
+
+
+
+
+@foreach($patient_files as $pf)
+<div class="modal fade" id="SetAliasImageModal{{$pf->id}}" tabindex="-1" role="dialog" aria-labelledby="SetAliasModalLabel{{$pf->id}}" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Set Alias Confirmation</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+
+            <form method="post" action="{{route ('managerSetAliasImage')}}">
+                {{ method_field('PUT') }}
+                @csrf
+                <div class="modal-body">
+                    <!-- <p>Are yuo sure you want to Set an alias for this image?</p> -->
+
+                    <input class="form-control" type="text" placeholder="Type what you want to call this image." name="ImageAlias" />
+                    <input type="hidden" value="{{$pf->id}}" name="ImageID" />
+
+                </div>
+
+
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+
+                    <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                    <!-- <form method="post" action="/ManagerDeleteImage">
+                    @csrf
+                    <button type="submit" class="btn btn-danger btn-sm" value="{{$pf->id}}" name="ImageID">
+                        <i class="fas fa-trash"></i> Delete
+                    </button>
+
+                    <input type="hidden" value="{{$pf->Path}}" name="ImagePath" />
+                </form> -->
+
+                </div>
+            </form>
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+@endforeach
 
 
 
@@ -1601,11 +1650,11 @@
 
 
 <!-- jQuery -->
-<script src="../../plugins/jquery/jquery.min.js"></script>
+<!-- <script src="../../plugins/jquery/jquery.min.js"></script> -->
 <!-- Bootstrap 4 -->
-<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script> -->
 <!-- AdminLTE App -->
-<script src="../../dist/js/adminlte.min.js"></script>
+<!-- <script src="../../dist/js/adminlte.min.js"></script> -->
 <!-- AdminLTE for demo purposes -->
 <!-- <script src="../../dist/js/demo.js"></script> -->
 

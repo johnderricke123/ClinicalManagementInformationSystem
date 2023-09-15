@@ -744,8 +744,8 @@ class ManagerController extends Controller
         PatientCheckUpDetails::where('id', '=', $request->patientID)->update([
             'PatientName' => $request->PatientName,
             'DoctorName' => $request->DoctorName,
-            'Diagnosis' => $request->Diagnosis,
-            'LabFindings' => $request->LaboratoryFindings,
+            // 'Diagnosis' => $request->Diagnosis,
+            // 'LabFindings' => $request->LaboratoryFindings,
             'DateAndTimeOfCheckUp' => $request->DateAndTimeOfCheckUp,
         ]);
 
@@ -917,11 +917,41 @@ class ManagerController extends Controller
         $patient_diagnoses_db->PatientName = $patient_fullname;
         $patient_diagnoses_db->LaboratoryFindings = $request->LaboratoryFindings;
         $patient_diagnoses_db->DateGenerated = now();
-        $patient_diagnoses_db->save();
+        $save = $patient_diagnoses_db->save();
 
-        
-        Alert::success('Success', 'Successfully added!')->persistent(true, false);
-        return redirect()->back();
+
+        if ($save) {
+            Alert::success('Success', 'Successfully added!')->persistent(true, false);
+            return redirect()->back();
+        } else {
+            Alert::error('Failed', 'Failed to add a client in scheduled list.')->persistent(true, false);
+            return redirect()->back();
+        }
+
+
+
+    }
+
+    public function manager_set_alias_image(Request $request){
+
+        // dd($request);
+        // return $request;
+
+        // $patient_files_db = new PatientFile();
+        // $patient_files_db
+        $patient_files_db = PatientFile::find($request->ImageID);
+        $patient_files_db->Alias = $request->ImageAlias;
+        $save = $patient_files_db->save();
+
+        if($save){
+            Alert::success('Success', 'Successfully added!')->persistent(true, false);
+            return redirect()->back();    
+        }
+        else{
+            Alert::error('Failed', 'Failed to add a client in scheduled list.')->persistent(true, false);
+            return redirect()->back();
+        }
+
 
 
     }

@@ -84,7 +84,7 @@ Route::get('/ManagerGeneratePrescription',[ManagerController::class,'popup'])->n
     
     Route::post('/ManagerDeleteAllSelectedData',[ManagerController::class,'manager_delete_all_selected_data'])->name('managerDeleteAllSelectedImages');
 
-    Route::post('/ManagerEditPatientInformations', [ManagerController::class,'manager_edit_patient_informations'])->name('managerEditPatientInformations');
+    Route::put('/ManagerEditPatientInformations', [ManagerController::class,'manager_edit_patient_informations'])->name('managerEditPatientInformations');
 
     Route::post('/ManagerUploadPatientProfilePicture', [ManagerController::class,'manager_upload_patient_profile_picture'])->name('uploadPatientProfilePicture');
 
@@ -96,6 +96,9 @@ Route::get('/ManagerGeneratePrescription',[ManagerController::class,'popup'])->n
 
     Route::post('/ManagerAddPatientLaboratoryFindings', [ManagerController::class,'manager_add_patient_laboratory_findings'])->name('managerAddPatientLaboratoryFindings');
 
+    Route::put('/ManagerSetAliasImage', [ManagerController::class,'manager_set_alias_image'])->name('managerSetAliasImage');
+
+    
 
     
     
